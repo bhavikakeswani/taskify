@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>All Tasks</h2>
+    <button class="btn" style="background-color:#8c9ccc">
+      <i data-feather="plus"></i> Add Task
+    </button>
+  </div>
+
+  <!-- Today Section -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header fw-bold">Today</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex align-items-start">
+        <input type="checkbox" class="task-checkbox me-2">
+        <div>
+          Finish frontend for dashboard  
+          <div class="text-muted small">Due: 30 Aug 2025</div>
+        </div>
+      </li>
+      <li class="list-group-item d-flex align-items-start">
+        <input type="checkbox" class="task-checkbox me-2" checked>
+        <div>
+          Write commit messages for setup  
+          <div class="text-muted small">Due: 28 Aug 2025</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Tomorrow Section -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header fw-bold">Tomorrow</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex align-items-start">
+        <input type="checkbox" class="task-checkbox me-2">
+        <div>
+          Plan database schema  
+          <div class="text-muted small">Due: 1 Sep 2025</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Upcoming Section -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header fw-bold">Upcoming</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex align-items-start">
+        <input type="checkbox" class="task-checkbox me-2">
+        <div>
+          Setup user authentication  
+          <div class="text-muted small">Due: 5 Sep 2025</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+{% endblock %}

@@ -64,7 +64,7 @@ body {
 
 .sidebar .nav-link.active {
   background-color: #e9ecef;
-  font-weight: bold;
+  font-weight: 600;
   color: #000 !important;
 }
 
@@ -76,4 +76,70 @@ main {
 /* User dropdown */
 #userDropdown::after {
   display: none !important;
+}
+
+.task-list {
+  margin: 0;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;       
+  border: 1px solid #555;
+  appearance: none;          
+  outline: none;
+  cursor: pointer;
+  margin-top: 4px;       
+  flex-shrink: 0;
+}
+
+.task-checkbox:checked {
+  background-color: #8c9ccc;  
+  border-color: #8c9ccc;
+  position: relative;
+}
+
+.task-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.task-checkbox:checked + div {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.task-checkbox:hover {
+  border-color: #888;
 }

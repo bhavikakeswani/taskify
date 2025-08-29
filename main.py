@@ -8,7 +8,15 @@ def home():
 
 @app.route('/dashboard')
 def dashboard():
-    return  render_template('dashboard.html')
+    return  render_template('dashboard.html',active_page="dashboard")
+
+@app.route('/tasks')
+def tasks():
+    return  render_template('all_tasks.html',active_page='all_tasks')
+
+@app.route("/today")
+def today():
+    return render_template("today.html", active_page="today")
 
 if __name__=='__main__':
     app.run(debug=True)
