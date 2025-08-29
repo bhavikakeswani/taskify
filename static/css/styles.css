@@ -1,3 +1,13 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Navbar */
 .custom-navbar {
   background-color: #5D688A;
@@ -11,16 +21,34 @@
   color: #FFDBB6 !important; 
 }
 
+.navbar-brand {
+  color: #fff !important; 
+}
+
+.brand-icon {
+  color: #fff;
+  width: 22px;  
+  height: 22px; 
+}
+
 .tinos-regular {
   font-family: "Tinos", serif;
-  font-weight: 400;
+  font-weight: 500;
+  font-size: 1.3rem;
   font-style: normal;
 }
 
 /* Sidebar */
-.sidebar {
-  height: 100vh;
+#sidebarMenu {
+  position: fixed;          
+  top: 56px;               
+  bottom: 0;
+  left: 0;
+  width: 240px;           
+  z-index: 100;
+  background-color: #f8f9fa;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  overflow-y: auto;       
 }
 
 .sidebar .nav-link {
@@ -40,10 +68,12 @@
   color: #000 !important;
 }
 
-#sidebarMenu {
-  padding-top: 50px; 
+main {
+  margin-left: 240px; 
+  padding: 1rem;
 }
 
+/* User dropdown */
 #userDropdown::after {
   display: none !important;
 }
