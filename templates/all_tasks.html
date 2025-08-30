@@ -3,7 +3,7 @@
 {% block content %}
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>All Tasks</h2>
-    <button class="btn" style="background-color:#8c9ccc">
+    <button class="btn add-task">
       <i data-feather="plus"></i> Add Task
     </button>
   </div>
@@ -11,50 +11,128 @@
   <!-- Today Section -->
   <div class="card shadow-sm mb-4">
     <div class="card-header fw-bold">Today</div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item d-flex align-items-start">
-        <input type="checkbox" class="task-checkbox me-2">
-        <div>
-          Finish frontend for dashboard  
-          <div class="text-muted small">Due: 30 Aug 2025</div>
-        </div>
-      </li>
-      <li class="list-group-item d-flex align-items-start">
-        <input type="checkbox" class="task-checkbox me-2" checked>
-        <div>
-          Write commit messages for setup  
-          <div class="text-muted small">Due: 28 Aug 2025</div>
-        </div>
-      </li>
-    </ul>
+    <div class="card-body">
+
+      <!-- Work Category -->
+      <div class="card mb-3 border-0 shadow-sm">
+        <div class="card-header bg-light fw-semibold">Work</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-start">
+              <input type="checkbox" class="task-checkbox me-2">
+              <div>
+                Finish project report  
+                <div class="text-muted small">Due: 30 Aug 2025</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <a href="#" class="delete-icon" >
+                <i data-feather="trash-2"></i>
+              </a>
+              <span class="status-dot pending"></span>
+            </div>
+          </li>
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-start">
+              <input type="checkbox" class="task-checkbox me-2">
+              <div>
+                Email client  
+                <div class="text-muted small">Due: 30 Aug 2025</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <a href="#" class="delete-icon" >
+                <i data-feather="trash-2"></i>
+              </a>
+              <span class="status-dot completed"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Personal Category -->
+      <div class="card mb-3 border-0 shadow-sm">
+        <div class="card-header bg-light fw-semibold">Personal</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-start">
+              <input type="checkbox" class="task-checkbox me-2">
+              <div>
+                Buy groceries  
+                <div class="text-muted small">Due: 30 Aug 2025</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <a href="#" class="delete-icon" >
+                <i data-feather="trash-2"></i>
+              </a>
+              <span class="status-dot completed"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 
   <!-- Tomorrow Section -->
   <div class="card shadow-sm mb-4">
     <div class="card-header fw-bold">Tomorrow</div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item d-flex align-items-start">
-        <input type="checkbox" class="task-checkbox me-2">
-        <div>
-          Plan database schema  
-          <div class="text-muted small">Due: 1 Sep 2025</div>
-        </div>
-      </li>
-    </ul>
+    <div class="card-body">
+
+      <!-- Study Category -->
+      <div class="card mb-3 border-0 shadow-sm">
+        <div class="card-header bg-light fw-semibold">Study</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-start">
+              <input type="checkbox" class="task-checkbox me-2">
+              <div>
+                Revise chapter 4  
+                <div class="text-muted small">Due: 1 Sep 2025</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <a href="#" class="delete-icon" >
+                <i data-feather="trash-2"></i>
+              </a>
+              <span class="status-dot pending"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 
   <!-- Upcoming Section -->
   <div class="card shadow-sm mb-4">
     <div class="card-header fw-bold">Upcoming</div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item d-flex align-items-start">
-        <input type="checkbox" class="task-checkbox me-2">
-        <div>
-          Setup user authentication  
-          <div class="text-muted small">Due: 5 Sep 2025</div>
-        </div>
-      </li>
-    </ul>
+    <div class="card-body">
+
+      <!-- Work Category -->
+      <div class="card mb-3 border-0 shadow-sm">
+        <div class="card-header bg-light fw-semibold">Work</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-start">
+              <input type="checkbox" class="task-checkbox me-2">
+              <div>
+                Setup user authentication  
+                <div class="text-muted small">Due: 5 Sep 2025</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <a href="#" class="delete-icon" >
+                <i data-feather="trash-2"></i>
+              </a>
+              <span class="status-dot pending"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 
 {% endblock %}

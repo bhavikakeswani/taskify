@@ -18,5 +18,9 @@ def tasks():
 def today():
     return render_template("today.html", active_page="today")
 
+@app.route("/completed")
+def completed():
+    return render_template("completed.html", active_page="completed")
+
 if __name__=='__main__':
     app.run(debug=True)

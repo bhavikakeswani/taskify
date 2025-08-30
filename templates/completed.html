@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="fw-bold">Completed Tasks</h2>
+  <select class="form-select w-auto">
+    <option>Today</option>
+    <option selected>This Week</option>
+    <option>This Month</option>
+  </select>
+</div>
+
+<!-- Stats -->
+<div class="row g-3 mb-4">
+  <div class="col-sm-4">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <h6 class="text-muted text-uppercase small mb-1">Completed Today</h6>
+        <h4 class="mb-0 fw-bold">5</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <h6 class="text-muted text-uppercase small mb-1">This Week</h6>
+        <h4 class="mb-0 fw-bold">12</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <h6 class="text-muted text-uppercase small mb-1">Best Streak</h6>
+        <h4 class="mb-0 fw-bold">9 days</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Completed tasks list -->
+<div class="table-responsive">
+  <table class="table align-middle shadow-sm border">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Category</th>
+        <th scope="col">Completed</th>
+        <th scope="col" class="text-end">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><i data-feather="check-circle" class="text-success me-2"></i>Write project brief</td>
+        <td><span class="badge category-work">Work</span></td>
+        <td class="text-muted">Today · 09:34</td>
+        <td class="text-end">
+          <button class="btn btn-sm btn-outline-success me-2"><i data-feather="corner-up-left"></i></button>
+          <button class="btn btn-sm btn-outline-danger"><i data-feather="trash-2"></i></button>
+        </td>
+      </tr>
+      <tr>
+        <td><i data-feather="check-circle" class="text-success me-2"></i>Email sprint update</td>
+        <td><span class="badge category-others">Others</span></td>
+        <td class="text-muted">Today · 08:12</td>
+        <td class="text-end">
+          <button class="btn btn-sm btn-outline-success me-2"><i data-feather="corner-up-left"></i></button>
+          <button class="btn btn-sm btn-outline-danger"><i data-feather="trash-2"></i></button>
+        </td>
+      </tr>
+      <tr>
+        <td><i data-feather="check-circle" class="text-success me-2"></i>Pay electricity bill</td>
+        <td><span class="badge category-personal">Personal</span></td>
+        <td class="text-muted">Yesterday · 17:22</td>
+        <td class="text-end">
+          <button class="btn btn-sm btn-outline-success me-2"><i data-feather="corner-up-left"></i></button>
+          <button class="btn btn-sm btn-outline-danger"><i data-feather="trash-2"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

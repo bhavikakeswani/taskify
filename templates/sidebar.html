@@ -10,7 +10,7 @@
               </li>
               <li class="nav-item"><a class="nav-link {% if active_page == 'all_tasks' %}active{% endif %}" href="{{url_for('tasks')}}"><span data-feather="list"></span> All Tasks</a></li>
               <li class="nav-item"><a class="nav-link {% if active_page == 'today' %}active{% endif %}" href="{{url_for('today')}}"><span data-feather="calendar"></span> Today</a></li>
-              <li class="nav-item"><a class="nav-link" href="#"><span data-feather="check"></span> Completed</a></li>
+              <li class="nav-item"><a class="nav-link {% if active_page == 'completed' %}active{% endif %}" href="{{url_for('completed')}}"><span data-feather="check"></span> Completed</a></li>
               <li class="nav-item"><a class="nav-link" href="#"><span data-feather="plus"></span> Add Task</a></li>
               <li class="nav-item"><a class="nav-link" href="#"><span data-feather="settings"></span> Settings</a></li>
             </ul>
