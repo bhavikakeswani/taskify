@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  background-color: #FFF2EF;
 }
 
 body {
@@ -15,26 +16,32 @@ body {
 
 .navbar-dark .nav-link {
   color: #fff !important; 
+  transition: color 0.2s ease-in-out;   
 }
 
 .navbar-dark .nav-link:hover {
   color: #FFDBB6 !important; 
 }
 
-.navbar-brand {
-  color: #fff !important; 
+.navbar-dark .nav-link.active {
+  color: #F7A5A5 !important; 
+  font-weight: 600;
 }
 
-.brand-icon {
-  color: #fff;
-  width: 22px;  
-  height: 22px; 
+.navbar-brand {
+  color: #fff !important; 
 }
 
 .tinos-regular {
   font-family: "Tinos", serif;
   font-weight: 500;
   font-size: 1.3rem;
+  font-style: normal;
+}
+
+.tangerine-regular {
+  font-family: "Tangerine", cursive;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -47,7 +54,8 @@ body {
   width: 240px;           
   z-index: 100;
   background-color: #f8f9fa;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  border-right: 1px solid #e5e5e5;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05); 
   overflow-y: auto;       
 }
 
@@ -56,20 +64,38 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 10px 14px;
+  margin: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
 }
 
-.sidebar .nav-link span[data-feather] {
-  stroke: #333 !important; 
+.sidebar .nav-link:hover {
+  background-color: #FFF2EF;   
+  color: #5D688A !important; 
+}
+
+.sidebar .nav-link:hover span[data-feather] {
+  stroke: #5D688A !important;
 }
 
 .sidebar .nav-link.active {
-  background-color: #e9ecef;
+  background-color: #F7A5A5;
+  color: #000000 !important;
   font-weight: 600;
-  color: #000 !important;
+}
+
+.sidebar .nav-link.active span[data-feather] {
+  stroke: #fff !important;
+}
+
+#sidebarMenu ~ main {
+  margin-left: 240px;
+  padding: 1rem;
 }
 
 main {
-  margin-left: 240px; 
+  margin: 0;
   padding: 1rem;
 }
 
@@ -214,6 +240,28 @@ main {
 
 .update-icon:hover {
   color: #3b82f6; 
+}
+.sign-in{
+  border-color: #596da9;
+  color: #596da9;
+}
+
+.sign-in:hover {
+  background-color: #4e6193;
+  border-color: #4e6193;
+  color: #fff;
+}
+
+.sign-up{
+  background-color: #53679c;
+  border-color: #53679c;
+  color: #fff;
+}
+
+.sign-up:hover {
+  background-color: #45578e;
+  border-color: #45578e;
+  color: #fff;
 }
 
 .add-task {

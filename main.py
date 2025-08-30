@@ -6,6 +6,14 @@ app=Flask(__name__)
 def home():
     return  render_template('index.html')
 
+@app.route('/signup')
+def signup():
+    return  render_template('signup.html')
+
+@app.route('/signin')
+def signin():
+    return  render_template('signin.html')
+
 @app.route('/dashboard')
 def dashboard():
     return  render_template('dashboard.html',active_page="dashboard")
