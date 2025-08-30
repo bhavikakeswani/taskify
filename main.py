@@ -22,5 +22,17 @@ def today():
 def completed():
     return render_template("completed.html", active_page="completed")
 
+@app.route("/add_task") 
+def add_task():
+    return render_template("add_task.html", active_page="add_task")
+
+# @app.route("/update_task/<int:task_id>")
+# def update_task(task_id):
+#     return render_template("update_task.html", task_id=task_id)
+
+@app.route("/update_task")
+def update_task():
+    return render_template("update_task.html")
+
 if __name__=='__main__':
     app.run(debug=True)

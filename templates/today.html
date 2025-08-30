@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3 border-bottom">
   <h2>Today’s Tasks</h2>
-  <button class="btn add-task">
+  <button class="btn add-task" href="{{ url_for('add_task') }}">
     <i data-feather="plus"></i> Add Task
   </button>
 </div>
