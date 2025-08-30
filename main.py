@@ -34,5 +34,13 @@ def add_task():
 def update_task():
     return render_template("update_task.html")
 
+@app.route("/settings")
+def settings():
+    return render_template("settings.html", active_page="settings")
+
+@app.route("/profile")
+def profile():
+    return render_template("profile.html")
+
 if __name__=='__main__':
     app.run(debug=True)
