@@ -74,7 +74,20 @@
   <!-- Header -->
   {% include 'header.html' %}
 
-  <main class="signin-page d-flex align-items-center justify-content-center">
+  <main class="signin-page d-flex flex-column align-items-center justify-content-center">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show w-100 mx-3" 
+          style="max-width: 380px; width: 100%;" 
+          role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
     <div class="card shadow-lg p-4 rounded-4" style="max-width: 380px; width: 100%;">
       <div class="text-center mb-2">
         <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Taskify Logo" width="80" height="70">
@@ -82,19 +95,19 @@
         <p class="text-muted small">Sign up to start managing your tasks</p>
       </div>
 
-      <form class="form-signin">
+      <form class="form-signin" action="/signup" method="POST">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control rounded-3" id="floatingName" placeholder="Your name" required>
+          <input type="text" class="form-control rounded-3" name='name' id="floatingName" placeholder="Your name" required>
           <label for="floatingName">Name</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="email" class="form-control rounded-3" id="floatingEmail" placeholder="name@example.com" required>
+          <input type="email" class="form-control rounded-3" name='email' id="floatingEmail" placeholder="name@example.com" required>
           <label for="floatingEmail">Email address</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" required>
+          <input type="password" class="form-control rounded-3" name="password" id="floatingPassword" placeholder="Password" required>
           <label for="floatingPassword">Password</label>
         </div>
 
@@ -112,6 +125,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     feather.replace()
+    setTimeout(() => {
+    document.querySelectorAll('.alert').forEach(alert => {
+      let bsAlert = new bootstrap.Alert(alert);
+      bsAlert.close();
+    });
+  }, 2000);
   </script>
 </body>
 </html>

@@ -1,0 +1,6 @@
+Flask==2.2.5
+Flask-SQLAlchemy==3.0.5
+SQLAlchemy==2.0.34
+Flask-Login==0.6.3
+Flask-Gravatar==0.5.0
+Werkzeug==2.2.3
