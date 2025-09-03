@@ -117,7 +117,6 @@ def dashboard():
 @app.route('/tasks')
 @login_required
 def tasks():
-    # Fetch tasks for the current user and pass them to the template
     user_tasks = db.session.execute(db.select(Task).where(Task.user_id == current_user.id)).scalars().all()
     return render_template('all_tasks.html', active_page='all_tasks', current_user=current_user, tasks=user_tasks)
 
