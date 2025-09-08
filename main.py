@@ -5,7 +5,8 @@ from sqlalchemy import String, Integer, Boolean, ForeignKey
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user, login_required
 from flask_gravatar import Gravatar
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
+from datetime import datetime,timedelta
+from collections import defaultdict
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -117,8 +118,41 @@ def dashboard():
 @app.route('/tasks')
 @login_required
 def tasks():
-    user_tasks = db.session.execute(db.select(Task).where(Task.user_id == current_user.id)).scalars().all()
-    return render_template('all_tasks.html', active_page='all_tasks', current_user=current_user, tasks=user_tasks)
+    today = datetime.now().date()
+    tomorrow = today + timedelta(days=1)
+
+    user_tasks = db.session.execute(
+        db.select(Task).where(Task.user_id == current_user.id)
+    ).scalars().all()
+
+    grouped = {
+        "today": defaultdict(list),
+        "tomorrow": defaultdict(list),
+        "upcoming": defaultdict(list),
+    }
+
+    for task in user_tasks:
+        if not task.due_date:
+            grouped["upcoming"][task.category].append(task)
+            continue
+
+        # parse the stored string safely
+        due_dt = datetime.strptime(task.due_date.strip(), "%d %b %Y").date()
+
+        if due_dt == today:
+            grouped["today"][task.category].append(task)
+        elif due_dt == tomorrow:
+            grouped["tomorrow"][task.category].append(task)
+        else:
+            grouped["upcoming"][task.category].append(task)
+
+    return render_template(
+        "all_tasks.html",
+        active_page="all_tasks",
+        current_user=current_user,
+        grouped=grouped
+    )
+
 
 @app.route("/today")
 @login_required
@@ -156,7 +190,7 @@ def add_task():
             user_id=current_user.id,
             title=title,
             description=description,
-            category=category,
+            category=category.title(),
             created_at=datetime.now().strftime("%d %b %Y"),
             due_date=due_date,
             completed=bool(completed),
@@ -169,10 +203,49 @@ def add_task():
         return redirect(url_for('tasks'))
     return render_template("add_task.html", active_page="add_task", current_user=current_user)
 
-@app.route("/update_task", methods=['GET', 'POST'])
+@app.route("/delete_task/<int:task_id>")
 @login_required
-def update_task():
-    return render_template("update_task.html", current_user=current_user)
+def delete_task(task_id):
+    task_to_delete = db.get_or_404(Task, task_id)
+    db.session.delete(task_to_delete)
+    db.session.commit()
+    # flash('Task deleted successfully!', 'info')
+    return redirect(url_for('tasks'))
+
+@app.route("/update_task/<int:task_id>", methods=['GET', 'POST'])
+@login_required
+def update_task(task_id):
+    task_to_update = db.get_or_404(Task, task_id)
+    formatted_due_date = ''
+
+    if request.method == 'POST':
+        task_to_update.title = request.form.get('title')
+        task_to_update.description = request.form.get('details')
+        task_to_update.category = request.form.get('category')
+        due_date = request.form.get('due_date')
+        completed = request.form.get('completed')
+
+        if due_date:
+            task_to_update.due_date = datetime.strptime(due_date, '%Y-%m-%d').strftime("%d %b %Y")
+        else:
+            task_to_update.due_date = None
+
+        if completed and not task_to_update.completed:
+            task_to_update.completed = True
+            task_to_update.completed_at = datetime.now().strftime("%d %b %Y %I:%M %p")
+        elif not completed and task_to_update.completed:
+            task_to_update.completed = False
+            task_to_update.completed_at = None
+
+        db.session.commit()
+        flash('Task updated successfully!', 'success')
+        return redirect(url_for('tasks'))
+    
+    if task_to_update.due_date:
+        formatted_due_date = datetime.strptime(task_to_update.due_date, '%d %b %Y').strftime('%Y-%m-%d')
+
+    return render_template("update_task.html", current_user=current_user, task=task_to_update,formatted_due_date=formatted_due_date)
+
 
 @app.route("/settings")
 @login_required

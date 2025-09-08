@@ -1,153 +1,131 @@
 {% extends "base.html" %}
-
 {% block content %}
-  <div class="d-flex justify-content-between align-items-center mb-4 border-bottom">
-    <h2>All Tasks</h2>
-    <a href="{{ url_for('add_task') }}" class="btn add-task">
+
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom">
+  <h2>All Tasks</h2>
+  <a href="{{ url_for('add_task') }}" class="btn add-task">
     <i data-feather="plus"></i> Add Task
   </a>
-  </div>
+</div>
 
-  <!-- Today Section -->
-  <div class="card shadow-sm mb-4">
-    <div class="card-header fw-bold">Today</div>
-    <div class="card-body">
-
-      <!-- Work Category -->
-      <div class="card mb-3 border-0 shadow-sm">
-        <div class="card-header bg-light fw-semibold">Work</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-start">
-              <input type="checkbox" class="task-checkbox me-2">
-              <div>
-                Finish project report  
-                <div class="text-muted small">Due: 30 Aug 2025</div>
-              </div>
+<!-- Today -->
+{% if grouped.today %}
+<div class="card shadow-sm mb-4">
+  <div class="card-header fw-bold">Today</div>
+  <div class="card-body">
+    {% for category, tasks in grouped.today.items() %}
+    <div class="card mb-3 border-0 shadow-sm">
+      <div class="card-header bg-light fw-semibold">{{ category }}</div>
+      <ul class="list-group list-group-flush">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-start">
+            <input type="checkbox" class="task-checkbox me-2">
+            <div>
+              {{ task.title }}
+              <div class="text-muted small">Due: {{ task.due_date }}</div>
             </div>
-            <div class="d-flex align-items-center gap-2">
-              <a href="{{ url_for('update_task')}}" class="update-icon">
-                <i data-feather="edit-2"></i>
-              </a>
-              <a href="#" class="delete-icon" >
-                <i data-feather="trash-2"></i>
-              </a>
-              <span class="status-dot pending"></span>
-            </div>
-          </li>
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-start">
-              <input type="checkbox" class="task-checkbox me-2">
-              <div>
-                Email client  
-                <div class="text-muted small">Due: 30 Aug 2025</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center gap-2">
-              <a href="{{ url_for('update_task') }}" class="update-icon">
-                <i data-feather="edit-2"></i>
-              </a>
-              <a href="#" class="delete-icon" >
-                <i data-feather="trash-2"></i>
-              </a>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <a href="{{ url_for('update_task', task_id=task.id) }}" class="update-icon">
+              <i data-feather="edit-2"></i>
+            </a>
+            <a href="{{ url_for('delete_task', task_id=task.id) }}" class="delete-icon">
+              <i data-feather="trash-2"></i>
+            </a>
+            {% if task.completed == 1 %}
               <span class="status-dot completed"></span>
-            </div>
-          </li>
-        </ul>
-      </div>
+            {% else %}
+              <span class="status-dot pending"></span>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
 
-      <!-- Personal Category -->
-      <div class="card mb-3 border-0 shadow-sm">
-        <div class="card-header bg-light fw-semibold">Personal</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-start">
-              <input type="checkbox" class="task-checkbox me-2">
-              <div>
-                Buy groceries  
-                <div class="text-muted small">Due: 30 Aug 2025</div>
-              </div>
+<!-- Tomorrow -->
+{% if grouped.tomorrow %}
+<div class="card shadow-sm mb-4">
+  <div class="card-header fw-bold">Tomorrow</div>
+  <div class="card-body">
+    {% for category, tasks in grouped.tomorrow.items() %}
+    <div class="card mb-3 border-0 shadow-sm">
+      <div class="card-header bg-light fw-semibold">{{ category }}</div>
+      <ul class="list-group list-group-flush">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-start">
+            <input type="checkbox" class="task-checkbox me-2">
+            <div>
+              {{ task.title }}
+              <div class="text-muted small">Due: {{ task.due_date }}</div>
             </div>
-            <div class="d-flex align-items-center gap-2">
-              <a href="{{ url_for('update_task') }}" class="update-icon">
-                <i data-feather="edit-2"></i>
-              </a>
-              <a href="#" class="delete-icon" >
-                <i data-feather="trash-2"></i>
-              </a>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <a href="{{ url_for('update_task', task_id=task.id) }}" class="update-icon">
+              <i data-feather="edit-2"></i>
+            </a>
+            <a href="{{ url_for('delete_task', task_id=task.id) }}" class="delete-icon">
+              <i data-feather="trash-2"></i>
+            </a>
+            {% if task.completed == 1 %}
               <span class="status-dot completed"></span>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Tomorrow Section -->
-  <div class="card shadow-sm mb-4">
-    <div class="card-header fw-bold">Tomorrow</div>
-    <div class="card-body">
-
-      <!-- Study Category -->
-      <div class="card mb-3 border-0 shadow-sm">
-        <div class="card-header bg-light fw-semibold">Study</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-start">
-              <input type="checkbox" class="task-checkbox me-2">
-              <div>
-                Revise chapter 4  
-                <div class="text-muted small">Due: 1 Sep 2025</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center gap-2">
-              <a href="{{ url_for('update_task') }}" class="update-icon">
-                <i data-feather="edit-2"></i>
-              </a>
-              <a href="#" class="delete-icon" >
-                <i data-feather="trash-2"></i>
-              </a>
+            {% else %}
               <span class="status-dot pending"></span>
-            </div>
-          </li>
-        </ul>
-      </div>
-
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
+    {% endfor %}
   </div>
+</div>
+{% endif %}
 
-  <!-- Upcoming Section -->
-  <div class="card shadow-sm mb-4">
-    <div class="card-header fw-bold">Upcoming</div>
-    <div class="card-body">
-
-      <!-- Work Category -->
-      <div class="card mb-3 border-0 shadow-sm">
-        <div class="card-header bg-light fw-semibold">Work</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item d-flex align-items-center justify-content-between">
-            <div class="d-flex align-items-start">
-              <input type="checkbox" class="task-checkbox me-2">
-              <div>
-                Setup user authentication  
-                <div class="text-muted small">Due: 5 Sep 2025</div>
-              </div>
+<!-- Upcoming -->
+{% if grouped.upcoming %}
+<div class="card shadow-sm mb-4">
+  <div class="card-header fw-bold">Upcoming</div>
+  <div class="card-body">
+    {% for category, tasks in grouped.upcoming.items() %}
+    <div class="card mb-3 border-0 shadow-sm">
+      <div class="card-header bg-light fw-semibold">{{ category }}</div>
+      <ul class="list-group list-group-flush">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-start">
+            <input type="checkbox" class="task-checkbox me-2">
+            <div>
+              {{ task.title }}
+              <div class="text-muted small">Due: {{ task.due_date }}</div>
             </div>
-            <div class="d-flex align-items-center gap-2">
-              <a href="{{ url_for('update_task')}}" class="update-icon">
-                <i data-feather="edit-2"></i>
-              </a>
-              <a href="#" class="delete-icon" >
-                <i data-feather="trash-2"></i>
-              </a>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <a href="{{ url_for('update_task', task_id=task.id) }}" class="update-icon">
+              <i data-feather="edit-2"></i>
+            </a>
+            <a href="{{ url_for('delete_task', task_id=task.id) }}" class="delete-icon">
+              <i data-feather="trash-2"></i>
+            </a>
+            {% if task.completed == 1 %}
+              <span class="status-dot completed"></span>
+            {% else %}
               <span class="status-dot pending"></span>
-            </div>
-          </li>
-        </ul>
-      </div>
-
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
+    {% endfor %}
   </div>
+</div>
+{% endif %}
 
 {% endblock %}

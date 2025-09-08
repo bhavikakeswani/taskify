@@ -3,47 +3,42 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-1 mb-2 border-bottom">
   <h2 class="mb-2">Update Task</h2>
 </div>
-  <form method="POST" action="/tasks/add">
-    
-    <!-- Task Title -->
+
+<form method="POST" action="{{ url_for('update_task', task_id=task.id) }}">
+
     <div class="mb-3">
-      <label class="form-label">Task Title</label>
-      <input type="text" class="form-control" name="title" required>
+      <label class="form-label">Title</label>
+      <input type="text" class="form-control" name="title" value="{{ task.title }}" required>
     </div>
 
-    <!-- Due Date -->
     <div class="mb-3">
       <label class="form-label">Due Date</label>
-      <input type="date" class="form-control" name="due_date">
+      <input type="date" class="form-control" name="due_date" value="{{ formatted_due_date}}">
     </div>
 
-    <!-- Category -->
     <div class="mb-3">
       <label class="form-label">Category</label>
       <select class="form-select" name="category">
-        <option value="personal">Personal</option>
-        <option value="work">Work</option>
-        <option value="study">Study</option>
-        <option value="fitness">Fitness</option>
-        <option value="travel">Travel</option>
-        <option value="others">Others</option>
+        <option value="personal" {% if task.category=="personal" %}selected{% endif %}>Personal</option>
+        <option value="work" {% if task.category=="work" %}selected{% endif %}>Work</option>
+        <option value="study" {% if task.category=="study" %}selected{% endif %}>Study</option>
+        <option value="fitness" {% if task.category=="fitness" %}selected{% endif %}>Fitness</option>
+        <option value="travel" {% if task.category=="travel" %}selected{% endif %}>Travel</option>
+        <option value="others" {% if task.category=="others" %}selected{% endif %}>Others</option>
       </select>
     </div>
 
-    <!-- Details (Optional) -->
     <div class="mb-3">
-      <label class="form-label">Details (optional)</label>
-      <textarea class="form-control" name="details" rows="3" placeholder="Add extra notes or description"></textarea>
+      <label class="form-label">Details</label>
+      <textarea class="form-control" name="details" rows="3">{{ task.description }}</textarea>
     </div>
 
-    <!-- Completed Checkbox -->
     <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" name="completed" value="1">
+      <input class="form-check-input" type="checkbox" name="completed" value="yes" {% if task.completed %}checked{% endif %}>
       <label class="form-check-label">Mark as Completed</label>
     </div>
 
-    <!-- Buttons -->
     <button type="submit" class="btn btn-primary me-3 mt-2">Update Task</button>
-    <a href="{{url_for('dashboard')}}" class="btn btn-secondary mt-2">Cancel</a>
-  </form>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-2">Cancel</a>
+</form>
 {% endblock %}
