@@ -9,31 +9,20 @@
 </div>
 
 <ul class="list-unstyled task-list">
-  <!-- Pending Task -->
-  <li class="task-item">
-    <input type="checkbox" class="task-checkbox me-2">
-    <div class="task-info">
-      <span class="task-text">Finish Taskify sidebar highlighting</span>
-      <small class="text-muted d-block">Due: {{ current_date }}</small>
-    </div>
-  </li>
+  {% for task in tasks %}
+  <li class="task-item d-flex align-items-start">
+    <form action="{{ url_for('toggle_task_status', task_id=task.id) }}" method="post" class="d-flex align-items-start">
+      <input type="checkbox" 
+             class="task-checkbox check me-2" 
+             {% if task.completed %}checked{% endif %}
+             onchange="this.form.submit()">
 
-  <!-- Completed Task -->
-  <li class="task-item">
-    <input type="checkbox" class="task-checkbox me-2" checked>
-    <div class="task-info">
-      <span class="task-text">Push initial dashboard commit</span>
-      <small class="text-muted d-block">Due: {{ current_date }}</small>
-    </div>
+      <div class="task-info">
+        <span class="task-text-today">{{ task.title }}</span>
+        <small class="text-muted d-block">Due: {{ task.due_date }}</small>
+      </div>
+    </form>
   </li>
-
-  <!-- Pending Task -->
-  <li class="task-item">
-    <input type="checkbox" class="task-checkbox me-2">
-    <div class="task-info">
-      <span class="task-text">Plan database schema</span>
-      <small class="text-muted d-block">Due: {{ current_date }}</small>
-    </div>
-  </li>
+  {% endfor %}
 </ul>
 {% endblock %}

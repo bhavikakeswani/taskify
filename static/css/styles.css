@@ -170,6 +170,11 @@ main {
   border-color: #888;
 }
 
+.task-checkbox:checked + .task-info .task-text-today {
+  text-decoration: line-through;
+  color: #999;
+}
+
 .table td:first-child {
   padding-left: 1rem; 
 }

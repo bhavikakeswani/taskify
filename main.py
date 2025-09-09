@@ -161,8 +161,6 @@ def toggle_task_status(task_id):
     
     db.session.commit()
     
-    flash('Task status updated successfully!', 'success')
-    
     return redirect(request.referrer)
 
 
