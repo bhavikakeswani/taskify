@@ -157,10 +157,14 @@ def tasks():
 def toggle_task_status(task_id):
     task = Task.query.get_or_404(task_id)
     
-    task.completed = 1 - task.completed
+    if task.completed:
+        task.completed = False
+        task.completed_at = None
+    else:
+        task.completed = True
+        task.completed_at = datetime.now().strftime("%d %b %Y %I:%M")
     
     db.session.commit()
-    
     return redirect(request.referrer)
 
 
@@ -174,8 +178,50 @@ def today():
 @app.route("/completed")
 @login_required
 def completed():
-    completed_tasks = db.session.execute(db.select(Task).where(Task.user_id == current_user.id, Task.completed == True)).scalars().all()
-    return render_template("completed.html", active_page="completed", current_user=current_user, tasks=completed_tasks)
+    now = datetime.now()
+    filter_by = request.args.get("filter", "this_week")  
+
+    start_of_week = now - timedelta(days=now.weekday())
+    start_of_month = now.replace(day=1)
+
+    completed_tasks = db.session.execute(
+        db.select(Task).where(Task.user_id == current_user.id, Task.completed == True)
+    ).scalars().all()
+
+    filtered_tasks = []
+    completed_today_count = 0
+    completed_this_week_count = 0
+    completed_this_month_count = 0
+
+    for task in completed_tasks:
+        if task.completed_at:
+            completed_dt = datetime.strptime(task.completed_at.strip(), "%d %b %Y %I:%M")
+            
+            if completed_dt.date() == now.date():
+                completed_today_count += 1
+            if completed_dt.date() >= start_of_week.date():
+                completed_this_week_count += 1
+            if completed_dt.date() >= start_of_month.date():
+                completed_this_month_count += 1
+
+            #dropdown filter
+            if filter_by == "today" and completed_dt.date() == now.date():
+                filtered_tasks.append(task)
+            elif filter_by == "this_week" and completed_dt.date() >= start_of_week.date():
+                filtered_tasks.append(task)
+            elif filter_by == "this_month" and completed_dt.date() >= start_of_month.date():
+                filtered_tasks.append(task)
+
+    return render_template(
+        "completed.html",
+        active_page="completed",
+        current_user=current_user,
+        tasks=filtered_tasks,
+        filter_by=filter_by,
+        completed_today=completed_today_count,
+        completed_this_week=completed_this_week_count,
+        completed_this_month=completed_this_month_count
+    )
 
 @app.route("/add_task", methods=['GET', 'POST'])
 @login_required
@@ -194,7 +240,7 @@ def add_task():
 
         completed_at = None
         if completed:
-            completed_at = datetime.now().strftime("%d %b %Y %I:%M %p")
+            completed_at = datetime.now().strftime("%d %b %Y %I:%M")
 
         new_task = Task(
             user_id=current_user.id,
@@ -218,7 +264,7 @@ def delete_task(task_id):
     task_to_delete = db.get_or_404(Task, task_id)
     db.session.delete(task_to_delete)
     db.session.commit()
-    return redirect(url_for('tasks'))
+    return redirect(request.referrer)
 
 @app.route("/update_task/<int:task_id>", methods=['GET', 'POST'])
 @login_required
