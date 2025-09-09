@@ -110,10 +110,66 @@ def signin():
             return redirect(url_for('signup'))
     return render_template('signin.html', current_user=current_user)
 
-@app.route('/dashboard')
+@app.route('/dashboard',methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html', active_page="dashboard", current_user=current_user)
+    if request.method == 'POST':
+        new_task_title = request.form.get('new_task')
+        if new_task_title:
+            new_task = Task(
+                user_id=current_user.id,
+                title=new_task_title,
+                description="",
+                category="Personal",
+                created_at=datetime.now().strftime("%d %b %Y"),
+                due_date=None,
+                completed=False,
+                completed_at=None
+            )
+            db.session.add(new_task)
+            db.session.commit()
+            return redirect(url_for('dashboard'))
+    today = datetime.now().date()
+
+    user_tasks = db.session.execute(
+        db.select(Task).where(Task.user_id == current_user.id)
+    ).scalars().all()
+
+    name=current_user.name.split(" ")[0] if current_user.name else "User"
+
+    completed_tasks = [t for t in user_tasks if t.completed]
+
+    for t in user_tasks:
+        t.due_date_obj = datetime.strptime(t.due_date.strip(), "%d %b %Y").date() if t.due_date else None
+
+    due_today_tasks = [t for t in user_tasks if t.due_date_obj == today]
+    pending_tasks = [t for t in user_tasks if not t.completed and (not t.due_date_obj or t.due_date_obj >= today)]
+    overdue_tasks = [t for t in user_tasks if not t.completed and t.due_date_obj and t.due_date_obj < today]
+
+    events = []
+    for t in user_tasks:
+        if t.due_date_obj:
+            events.append({
+                "title": t.title,
+                "start": t.due_date_obj.strftime("%Y-%m-%d"),
+                "color": "#dc3545" if (not t.completed and t.due_date_obj < today) else (
+                         "#28a745" if t.completed else "#ffc107")
+            })
+
+    return render_template(
+        'dashboard.html',
+        active_page="dashboard",
+        current_user=current_user,
+        completed_count=len(completed_tasks),
+        due_today_count=len(due_today_tasks),
+        pending_count=len(pending_tasks),
+        overdue_count=len(overdue_tasks),
+        due_today_tasks=due_today_tasks,
+        current_date=today,
+        calendar_events=events,
+        name=name
+    )
+
 
 @app.route('/tasks')
 @login_required
