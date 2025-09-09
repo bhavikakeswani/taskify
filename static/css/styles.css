@@ -161,7 +161,7 @@ main {
   transform: rotate(45deg);
 }
 
-.task-checkbox:checked + div {
+.task-checkbox:checked + .task-text {
   text-decoration: line-through;
   color: #999;
 }

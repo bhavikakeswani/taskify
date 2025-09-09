@@ -136,7 +136,6 @@ def tasks():
             grouped["upcoming"][task.category].append(task)
             continue
 
-        # parse the stored string safely
         due_dt = datetime.strptime(task.due_date.strip(), "%d %b %Y").date()
 
         if due_dt == today:
@@ -152,6 +151,19 @@ def tasks():
         current_user=current_user,
         grouped=grouped
     )
+
+@app.route('/task/<int:task_id>/toggle', methods=['POST'])
+@login_required
+def toggle_task_status(task_id):
+    task = Task.query.get_or_404(task_id)
+    
+    task.completed = 1 - task.completed
+    
+    db.session.commit()
+    
+    flash('Task status updated successfully!', 'success')
+    
+    return redirect(request.referrer)
 
 
 @app.route("/today")
@@ -199,7 +211,6 @@ def add_task():
 
         db.session.add(new_task)
         db.session.commit()
-        flash('Task added successfully!', 'success')
         return redirect(url_for('tasks'))
     return render_template("add_task.html", active_page="add_task", current_user=current_user)
 
@@ -209,7 +220,6 @@ def delete_task(task_id):
     task_to_delete = db.get_or_404(Task, task_id)
     db.session.delete(task_to_delete)
     db.session.commit()
-    # flash('Task deleted successfully!', 'info')
     return redirect(url_for('tasks'))
 
 @app.route("/update_task/<int:task_id>", methods=['GET', 'POST'])
@@ -238,7 +248,6 @@ def update_task(task_id):
             task_to_update.completed_at = None
 
         db.session.commit()
-        flash('Task updated successfully!', 'success')
         return redirect(url_for('tasks'))
     
     if task_to_update.due_date:
@@ -261,7 +270,6 @@ def profile():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.', 'info')
     return redirect(url_for('home'))
 
 # Main entry point for the application

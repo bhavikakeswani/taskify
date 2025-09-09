@@ -20,11 +20,16 @@
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-start">
-            <input type="checkbox" class="task-checkbox me-2">
-            <div>
-              {{ task.title }}
+            <form action="{{ url_for('toggle_task_status', task_id=task.id) }}" method="post">
+              <label class="task-label">
+                <input type="checkbox" 
+                      class="task-checkbox me-2" 
+                      {% if task.completed == 1 %}checked{% endif %}
+                      onchange="this.form.submit()">
+                <span class="task-text">{{ task.title }}</span>
+              </label>
               <div class="text-muted small">Due: {{ task.due_date }}</div>
-            </div>
+            </form>
           </div>
           <div class="d-flex align-items-center gap-2">
             <a href="{{ url_for('update_task', task_id=task.id) }}" class="update-icon">
@@ -60,11 +65,16 @@
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-start">
-            <input type="checkbox" class="task-checkbox me-2">
-            <div>
-              {{ task.title }}
+            <form action="{{ url_for('toggle_task_status', task_id=task.id) }}" method="post">
+              <label class="task-label">
+                <input type="checkbox" 
+                      class="task-checkbox me-2" 
+                      {% if task.completed == 1 %}checked{% endif %}
+                      onchange="this.form.submit()">
+                <span class="task-text">{{ task.title }}</span>
+              </label>
               <div class="text-muted small">Due: {{ task.due_date }}</div>
-            </div>
+            </form>
           </div>
           <div class="d-flex align-items-center gap-2">
             <a href="{{ url_for('update_task', task_id=task.id) }}" class="update-icon">
@@ -100,11 +110,16 @@
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-start">
-            <input type="checkbox" class="task-checkbox me-2">
-            <div>
-              {{ task.title }}
+            <form action="{{ url_for('toggle_task_status', task_id=task.id) }}" method="post">
+              <label class="task-label">
+                <input type="checkbox" 
+                      class="task-checkbox me-2" 
+                      {% if task.completed == 1 %}checked{% endif %}
+                      onchange="this.form.submit()">
+                <span class="task-text">{{ task.title }}</span>
+              </label>
               <div class="text-muted small">Due: {{ task.due_date }}</div>
-            </div>
+            </form>
           </div>
           <div class="d-flex align-items-center gap-2">
             <a href="{{ url_for('update_task', task_id=task.id) }}" class="update-icon">
