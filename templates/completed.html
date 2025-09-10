@@ -59,8 +59,6 @@
             Yesterday · {{ dt_parts[3] }}
           {% elif task_date == today %}
             Today · {{ dt_parts[3] }}
-          {% elif task_date == tomorrow %}
-            Tomorrow · {{ dt_parts[3] }}
           {% else %}
             {{ task_date }} · {{ dt_parts[3] }}
           {% endif %}

@@ -268,6 +268,10 @@ def completed():
             elif filter_by == "this_month" and completed_dt.date() >= start_of_month.date():
                 filtered_tasks.append(task)
 
+    today_str = now.strftime("%d %b %Y")
+    yesterday_str = (now - timedelta(days=1)).strftime("%d %b %Y")
+    tomorrow_str = (now + timedelta(days=1)).strftime("%d %b %Y")
+
     return render_template(
         "completed.html",
         active_page="completed",
@@ -276,8 +280,12 @@ def completed():
         filter_by=filter_by,
         completed_today=completed_today_count,
         completed_this_week=completed_this_week_count,
-        completed_this_month=completed_this_month_count
+        completed_this_month=completed_this_month_count,
+        today=today_str,
+        yesterday=yesterday_str,
+        tomorrow=tomorrow_str
     )
+
 
 @app.route("/add_task", methods=['GET', 'POST'])
 @login_required
