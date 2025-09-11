@@ -104,17 +104,15 @@ body.dark-theme {
   color: #e5e5e5;
 }
 
-/* --- FINAL LINE FIX FOR DARK THEME --- */
 body.dark-theme .card,
 body.dark-theme .card-header,
 body.dark-theme .card-body,
 body.dark-theme .list-group-item {
-  background-color: #343333 !important; /* same as body */
-  border: none !important;             /* kill borders */
-  box-shadow: none !important;         /* kill shadows */
+  background-color: #343333 !important;
+  border: none !important;           
+  box-shadow: none !important;    
 }
 
-/* If flush list, keep only subtle dividers */
 body.dark-theme .list-group-flush .list-group-item {
   border: none !important;
   border-bottom: 1px solid #444 !important;
@@ -153,23 +151,6 @@ body.dark-theme main {
   color: #e5e5e5;
 }
 
-/* body.dark-theme .form-select,
-body.dark-theme .form-control {
-  background-color: #424242;
-  color: #fff;
-  border: 1px solid #555;
-}
-
-body.dark-theme .form-select:focus,
-body.dark-theme .form-control:focus {
-  border-color: #888;
-  background-color: #333;
-  color: #fff;
-} */
-
-/* Add these dark theme styles to your existing CSS */
-
-/* Fix for cards in dark theme */
 body.dark-theme .card {
   background-color: #424242 !important;
   border: 1px solid #555 !important;
@@ -187,7 +168,6 @@ body.dark-theme .card-body {
   color: #e5e5e5 !important;
 }
 
-/* Fix for list items in dark theme */
 body.dark-theme .list-group-item {
   background-color: #424242 !important;
   border: 1px solid #555 !important;
@@ -198,7 +178,6 @@ body.dark-theme .list-group-item:hover {
   background-color: #4e4e4e !important;
 }
 
-/* Fix for borders and text in dark theme */
 body.dark-theme .border-bottom {
   border-bottom-color: #555 !important;
 }
@@ -212,7 +191,6 @@ body.dark-theme h6 {
   color: #e5e5e5 !important;
 }
 
-/* Fix for buttons in dark theme */
 body.dark-theme .btn-primary {
   background-color: #5D688A !important;
   border-color: #5D688A !important;
@@ -223,7 +201,6 @@ body.dark-theme .btn-primary:hover {
   border-color: #4e5b7a !important;
 }
 
-/* Calendar dark theme fix */
 body.dark-theme .calendar-container {
   background-color: #424242 !important;
   border-color: #555 !important;
@@ -250,7 +227,6 @@ body.dark-theme .fc-day-today {
   border-color: #007bff !important;
 }
 
-/* Error handling styles */
 .error-container {
   position: fixed;
   top: 20px;
@@ -288,7 +264,6 @@ body.dark-theme .fc-day-today {
   }
 }
 
-/* Dark theme for error alerts */
 body.dark-theme .alert {
   background-color: #424242 !important;
   border-color: #555 !important;
@@ -310,7 +285,6 @@ body.dark-theme .alert-warning {
   color: #ffffcb !important;
 }
 
-/* Loading spinner */
 .loading-spinner {
   display: none;
   position: fixed;
@@ -327,24 +301,20 @@ body.dark-theme .alert-warning {
   border-top: 0.3em solid #5D688A;
 }
 
-/* Dark theme for spinner */
 body.dark-theme .spinner-border-custom {
   border-color: rgba(229, 229, 229, 0.25);
   border-top-color: #e5e5e5;
 }
 
-/* ADD THESE TO YOUR EXISTING DARK THEME CSS */
-
-/* Fix the weird line issue around cards */
 body.dark-theme .card {
   background-color: #424242 !important;
-  border: 1px solid #424242 !important; /* Same color as background to hide border */
+  border: 1px solid #424242 !important; 
   color: #e5e5e5 !important;
 }
 
 body.dark-theme .card-header {
   background-color: #4e4e4e !important;
-  border-bottom: 1px solid #4e4e4e !important; /* Hide header bottom line */
+  border-bottom: 1px solid #4e4e4e !important; 
   color: #e5e5e5 !important;
 }
 
@@ -353,25 +323,22 @@ body.dark-theme .card-body {
   color: #e5e5e5 !important;
 }
 
-/* Fix list items (Tasks Due Today section) */
 body.dark-theme .list-group-item {
   background-color: #424242 !important;
-  border: 1px solid #424242 !important; /* Hide item borders */
+  border: 1px solid #424242 !important;
   color: #e5e5e5 !important;
 }
 
-/* For flush list groups (no borders on sides) */
 body.dark-theme .list-group-flush .list-group-item {
   border-left: 0 !important;
   border-right: 0 !important;
-  border-bottom: 1px solid #555 !important; /* Subtle separator */
+  border-bottom: 1px solid #555 !important;
 }
 
 body.dark-theme .list-group-flush .list-group-item:last-child {
   border-bottom: 0 !important;
 }
 
-/* Fix all headings and text in cards */
 body.dark-theme .card h5,
 body.dark-theme .card h6,
 body.dark-theme .card-title,
@@ -379,26 +346,49 @@ body.dark-theme .card-text {
   color: #e5e5e5 !important;
 }
 
-/* Fix the calendar background */
 body.dark-theme .calendar-container {
   background-color: #424242 !important;
   border: 1px solid #424242 !important;
 }
 
-/* Fix any remaining border issues */
 body.dark-theme .border-bottom {
   border-bottom-color: #555 !important;
 }
 
-/* Fix pie chart text visibility */
 body.dark-theme canvas {
   background-color: transparent !important;
 }
 
-/* Fix placeholder text in Quick Add */
 body.dark-theme .form-control::placeholder {
   color: #aaa !important;
 }
+
+/* Font size settings */
+.font-small {
+  font-size: 0.85rem;   /* Shrink body text */
+}
+
+.font-medium {
+  font-size: 1rem;      /* Default */
+}
+
+.font-large {
+  font-size: 1.15rem;   /* Increase body text slightly */
+}
+
+/* Headings: keep more consistent, only subtle scaling */
+.font-small h1, 
+.font-small h2, 
+.font-small h3 {
+  font-size: 150%; /* Slightly smaller, but still readable */
+}
+
+.font-large h1, 
+.font-large h2, 
+.font-large h3 {
+  font-size: 200%; /* Slightly larger */
+}
+
 
 #userDropdown::after {
   display: none !important;

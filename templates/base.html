@@ -20,7 +20,7 @@
 
   </head>
 
-<body class="{% if settings and settings.theme == 'dark' %}dark-theme{% endif %}">
+<body class="{% if settings and settings.theme == 'dark' %}dark-theme{% endif %} {% if settings %}font-{{ settings.font_size }}{% endif %}">
 
     <!-- Header -->
     {% include 'header.html' %}
