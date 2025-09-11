@@ -56,6 +56,19 @@ class Task(db.Model):
     completed: Mapped[bool] = mapped_column(Boolean, default=False)
     user = relationship('User', back_populates='tasks')
 
+# Define the UserSettings model for the database
+class UserSettings(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, unique=True)
+    theme = db.Column(db.String(20), default="light")
+    font_size = db.Column(db.String(20), default="medium")
+    language = db.Column(db.String(10), default="en")
+    start_page = db.Column(db.String(20), default="today")
+    sort_order = db.Column(db.String(20), default="due_date")
+    default_due_date = db.Column(db.String(20), default="none")
+
+    user = db.relationship("User", backref=db.backref("settings", uselist=False))
+
 # Flask-Login user loader function
 @login_manager.user_loader
 def load_user(user_id):
@@ -322,6 +335,7 @@ def add_task():
         return redirect(url_for('tasks'))
     return render_template("add_task.html", active_page="add_task", current_user=current_user)
 
+
 @app.route("/delete_task/<int:task_id>")
 @login_required
 def delete_task(task_id):
@@ -364,10 +378,43 @@ def update_task(task_id):
     return render_template("update_task.html", current_user=current_user, task=task_to_update,formatted_due_date=formatted_due_date)
 
 
-@app.route("/settings")
+@app.route("/settings", methods=["GET", "POST"])
 @login_required
 def settings():
-    return render_template("settings.html", active_page="settings", current_user=current_user)
+    settings = UserSettings.query.filter_by(user_id=current_user.id).first()
+
+    if not settings:
+        # Create default settings if not exists
+        settings = UserSettings(user_id=current_user.id)
+        db.session.add(settings)
+        db.session.commit()
+
+    if request.method == "POST":
+        settings.theme = request.form.get("theme", "light")
+        settings.font_size = request.form.get("font_size", "medium")
+        settings.language = request.form.get("language", "en")
+        settings.start_page = request.form.get("start_page", "today")
+        settings.sort_order = request.form.get("sort_order", "due_date")
+        settings.show_completed = "show_completed" in request.form
+        settings.default_due_date = request.form.get("default_due_date", "none")
+
+        db.session.commit()
+        flash("Settings saved successfully!", "success")
+        return redirect(url_for("settings"))
+
+    return render_template(
+        "settings.html",
+        active_page="settings",
+        current_user=current_user,
+        settings=settings
+    )
+
+@app.context_processor
+def inject_user_settings():
+    if current_user.is_authenticated:
+        settings = UserSettings.query.filter_by(user_id=current_user.id).first()
+        return dict(settings=settings)
+    return dict(settings=None)
 
 @app.route("/profile")
 @login_required
@@ -383,7 +430,5 @@ def logout():
 # Main entry point for the application
 if __name__ == '__main__':
     with app.app_context():
-        print("Creating database tables...")
         db.create_all()
-        print("Database tables created successfully.")
     app.run(debug=True)

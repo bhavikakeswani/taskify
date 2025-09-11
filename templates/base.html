@@ -20,7 +20,7 @@
 
   </head>
 
-<body>
+<body class="{% if settings and settings.theme == 'dark' %}dark-theme{% endif %}">
 
     <!-- Header -->
     {% include 'header.html' %}
