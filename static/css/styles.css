@@ -363,30 +363,28 @@ body.dark-theme .form-control::placeholder {
   color: #aaa !important;
 }
 
-/* Font size settings */
 .font-small {
-  font-size: 0.85rem;   /* Shrink body text */
+  font-size: 0.85rem;   
 }
 
 .font-medium {
-  font-size: 1rem;      /* Default */
+  font-size: 1rem;     
 }
 
 .font-large {
-  font-size: 1.15rem;   /* Increase body text slightly */
+  font-size: 1.15rem;   
 }
 
-/* Headings: keep more consistent, only subtle scaling */
 .font-small h1, 
 .font-small h2, 
 .font-small h3 {
-  font-size: 150%; /* Slightly smaller, but still readable */
+  font-size: 150%; 
 }
 
 .font-large h1, 
 .font-large h2, 
 .font-large h3 {
-  font-size: 200%; /* Slightly larger */
+  font-size: 200%; 
 }
 
 

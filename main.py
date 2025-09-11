@@ -114,6 +114,14 @@ def signin():
         if user:
             if check_password_hash(user.password, password):
                 login_user(user)
+                user_settings = UserSettings.query.filter_by(user_id=user.id).first()
+                if user_settings:
+                    if user_settings.start_page == "today":
+                        return redirect(url_for("today"))
+                    elif user_settings.start_page == "all":
+                        return redirect(url_for("tasks"))
+                    elif user_settings.start_page == "completed":
+                        return redirect(url_for("completed"))
                 return redirect(url_for('dashboard'))
             else:
                 flash('Invalid password, Please try again.', 'danger')
@@ -399,7 +407,6 @@ def settings():
         settings.default_due_date = request.form.get("default_due_date", "none")
 
         db.session.commit()
-        flash("Settings saved successfully!", "success")
         return redirect(url_for("settings"))
 
     return render_template(
