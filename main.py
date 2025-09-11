@@ -209,17 +209,21 @@ def tasks():
     }
 
     for task in user_tasks:
-        if not task.due_date:
-            grouped["upcoming"][task.category].append(task)
-            continue
+        if task.due_date:
+            due_dt = datetime.strptime(task.due_date.strip(), "%d %b %Y").date()
 
-        due_dt = datetime.strptime(task.due_date.strip(), "%d %b %Y").date()
+            if due_dt < today and task.completed:
+                continue
 
-        if due_dt == today:
-            grouped["today"][task.category].append(task)
-        elif due_dt == tomorrow:
-            grouped["tomorrow"][task.category].append(task)
+            if due_dt == today:
+                grouped["today"][task.category].append(task)
+            elif due_dt == tomorrow:
+                grouped["tomorrow"][task.category].append(task)
+            else:
+                grouped["upcoming"][task.category].append(task)
         else:
+            if task.completed:
+                continue
             grouped["upcoming"][task.category].append(task)
 
     return render_template(
