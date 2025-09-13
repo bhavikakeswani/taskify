@@ -325,7 +325,14 @@ def add_task():
         if due_date:
             due_date = datetime.strptime(due_date, '%Y-%m-%d').strftime("%d %b %Y")
         else:
-            due_date = None
+            user_settings = UserSettings.query.filter_by(user_id=current_user.id).first()
+            if user_settings:
+                if user_settings.default_due_date == "today":
+                    due_date = datetime.now().strftime("%d %b %Y")
+                elif user_settings.default_due_date == "tomorrow":
+                    due_date = (datetime.now() + timedelta(days=1)).strftime("%d %b %Y")
+                else:
+                    due_date = None
 
         completed_at = None
         if completed:
