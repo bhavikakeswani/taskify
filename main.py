@@ -64,7 +64,7 @@ class UserSettings(db.Model):
     font_size = db.Column(db.String(20), default="medium")
     language = db.Column(db.String(10), default="en")
     start_page = db.Column(db.String(20), default="today")
-    sort_order = db.Column(db.String(20), default="due_date")
+    accent_color = db.Column(db.String(20), default="blue")
     default_due_date = db.Column(db.String(20), default="none")
 
     user = db.relationship("User", backref=db.backref("settings", uselist=False))
@@ -413,7 +413,7 @@ def settings():
         settings.font_size = request.form.get("font_size", "medium")
         settings.language = request.form.get("language", "en")
         settings.start_page = request.form.get("start_page", "today")
-        settings.sort_order = request.form.get("sort_order", "due_date")
+        settings.accent_color = request.form.get("accent_color", "blue")
         settings.show_completed = "show_completed" in request.form
         settings.default_due_date = request.form.get("default_due_date", "none")
 

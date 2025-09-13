@@ -17,6 +17,39 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Corinthia:wght@400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playwrite+AU+QLD&family=Sacramento&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --accent-color: 
+          {% if settings.accent_color == 'primary' %}
+            var(--bs-primary)
+          {% elif settings.accent_color == 'green' %}
+            green
+          {% elif settings.accent_color == 'red' %}
+            red
+          {% elif settings.accent_color == 'purple' %}
+            purple
+          {% else %}
+            var(--bs-primary)
+          {% endif %}
+          ;
+      }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: var(--accent-color) !important;
+      border-color: var(--accent-color) !important;
+      opacity: 0.9;
+    }
+
+    a, .nav-link.active {
+      color: var(--accent-color);
+    }
+  </style>
 
   </head>
 

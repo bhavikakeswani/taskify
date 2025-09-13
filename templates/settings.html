@@ -46,15 +46,16 @@
     </select>
   </div>
 
-  <!-- Task Sort Order -->
-  <div class="mb-3">
-    <label class="form-label fw-semibold">Task Sort Order</label>
-    <select class="form-select" name="sort_order">
-      <option value="due_date" {% if settings.sort_order == "due_date" %}selected{% endif %}>By Due Date</option>
-      <option value="category" {% if settings.sort_order == "category" %}selected{% endif %}>By Category</option>
-      <option value="created" {% if settings.sort_order == "created" %}selected{% endif %}>By Created Date</option>
-    </select>
-  </div>
+<!-- Theme Accent Color -->
+<div class="mb-3">
+  <label class="form-label fw-semibold">Theme Accent Color</label>
+  <select class="form-select" name="accent_color">
+    <option value="blue" {% if settings.accent_color == "primary" %}selected{% endif %}>Blue</option>
+    <option value="green" {% if settings.accent_color == "green" %}selected{% endif %}>Green</option>
+    <option value="red" {% if settings.accent_color == "red" %}selected{% endif %}>Red</option>
+    <option value="purple" {% if settings.accent_color == "purple" %}selected{% endif %}>Purple</option>
+  </select>
+</div>
 
   <!-- Default Due Date -->
   <div class="mb-3">
