@@ -1,0 +1,414 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-09-14 00:58+0530\n"
+"PO-Revision-Date: 2025-09-14 00:58+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/add_task.html:4
+msgid "Add New Task"
+msgstr "Ajouter une nouvelle tâche"
+
+#: templates/add_task.html:10
+msgid "Task Title"
+msgstr "Titre de la tâche"
+
+#: templates/add_task.html:16 templates/update_task.html:15
+msgid "Due Date"
+msgstr "Date d'échéance"
+
+#: templates/add_task.html:22 templates/completed.html:45
+#: templates/update_task.html:20
+msgid "Category"
+msgstr "Catégorie"
+
+#: templates/add_task.html:24 templates/update_task.html:22
+msgid "Personal"
+msgstr "Personnel"
+
+#: templates/add_task.html:25 templates/update_task.html:23
+msgid "Work"
+msgstr "Travail"
+
+#: templates/add_task.html:26 templates/update_task.html:24
+msgid "Study"
+msgstr "Études"
+
+#: templates/add_task.html:27 templates/update_task.html:25
+msgid "Fitness"
+msgstr "Fitness"
+
+#: templates/add_task.html:28 templates/update_task.html:26
+msgid "Travel"
+msgstr "Voyage"
+
+#: templates/add_task.html:29 templates/update_task.html:27
+msgid "Others"
+msgstr "Autres"
+
+#: templates/add_task.html:35
+msgid "Details (optional)"
+msgstr "Détails (facultatif)"
+
+#: templates/add_task.html:36
+msgid "Add extra notes or description"
+msgstr "Ajouter des notes ou une description"
+
+#: templates/add_task.html:42 templates/update_task.html:38
+msgid "Mark as Completed"
+msgstr "Marquer comme terminé"
+
+#: templates/add_task.html:46
+msgid "Save Task"
+msgstr "Enregistrer la tâche"
+
+#: templates/add_task.html:47 templates/update_task.html:42
+msgid "Cancel"
+msgstr "Annuler"
+
+#: templates/all_tasks.html:5 templates/settings.html:44
+#: templates/sidebar.html:14
+msgid "All Tasks"
+msgstr "Toutes les tâches"
+
+#: templates/all_tasks.html:7 templates/sidebar.html:32 templates/today.html:7
+msgid "Add Task"
+msgstr "Ajouter une tâche"
+
+#: templates/all_tasks.html:14 templates/completed.html:6
+#: templates/completed.html:61 templates/settings.html:65
+#: templates/sidebar.html:20
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: templates/all_tasks.html:31 templates/all_tasks.html:76
+#: templates/all_tasks.html:121
+msgid "Due:"
+msgstr "Échéance :"
+
+#: templates/all_tasks.html:59 templates/settings.html:66
+msgid "Tomorrow"
+msgstr "Demain"
+
+#: templates/all_tasks.html:104
+msgid "Upcoming"
+msgstr "À venir"
+
+#: templates/completed.html:4 templates/dashboard.html:19
+#: templates/settings.html:45
+msgid "Completed Tasks"
+msgstr "Tâches terminées"
+
+#: templates/completed.html:7 templates/completed.html:24
+msgid "This Week"
+msgstr "Cette semaine"
+
+#: templates/completed.html:8 templates/completed.html:32
+msgid "This Month"
+msgstr "Ce mois-ci"
+
+#: templates/completed.html:16
+msgid "Completed Today"
+msgstr "Terminées aujourd'hui"
+
+#: templates/completed.html:44
+msgid "Task"
+msgstr "Tâche"
+
+#: templates/completed.html:46 templates/dashboard.html:155
+#: templates/sidebar.html:26
+msgid "Completed"
+msgstr "Terminée"
+
+#: templates/completed.html:47
+msgid "Actions"
+msgstr "Actions"
+
+#: templates/completed.html:59
+msgid "Yesterday"
+msgstr "Hier"
+
+#: templates/dashboard.html:5 templates/sidebar.html:8
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: templates/dashboard.html:8
+msgid "Welcome,"
+msgstr "Bienvenue,"
+
+#: templates/dashboard.html:34
+msgid "Due Today"
+msgstr "À échéance aujourd'hui"
+
+#: templates/dashboard.html:49
+msgid "Pending Tasks"
+msgstr "Tâches en attente"
+
+#: templates/dashboard.html:64 templates/dashboard.html:155
+msgid "Overdue"
+msgstr "En retard"
+
+#: templates/dashboard.html:75
+msgid "Tasks Due Today"
+msgstr "Tâches à échéance aujourd'hui"
+
+#: templates/dashboard.html:86
+msgid "overdue"
+msgstr "en retard"
+
+#: templates/dashboard.html:99
+msgid "Calendar"
+msgstr "Calendrier"
+
+#: templates/dashboard.html:118
+msgid "Task Progress"
+msgstr "Progression des tâches"
+
+#: templates/dashboard.html:129
+msgid "Quick Add"
+msgstr "Ajout rapide"
+
+#: templates/dashboard.html:133
+msgid "Add a new task."
+msgstr "Ajouter une nouvelle tâche."
+
+#: templates/dashboard.html:155
+msgid "Pending"
+msgstr "En attente"
+
+#: templates/header.html:5 templates/index.html:8 templates/index.html:72
+#: templates/signin.html:8 templates/signup.html:8
+msgid "Taskify"
+msgstr "Taskify"
+
+#: templates/header.html:10
+msgid "Toggle navigation"
+msgstr "Basculer la navigation"
+
+#: templates/header.html:19 templates/index.html:79
+msgid "Sign Up"
+msgstr "S'inscrire"
+
+#: templates/header.html:20 templates/index.html:80
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: templates/header.html:29
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/header.html:30 templates/sidebar.html:38
+msgid "Settings"
+msgstr "Paramètres"
+
+#: templates/header.html:32
+msgid "Sign Out"
+msgstr "Se déconnecter"
+
+#: templates/index.html:72
+msgid "Welcome to"
+msgstr "Bienvenue sur"
+
+#: templates/index.html:76
+msgid "“Turn chaos into clarity, one task at a time.”"
+msgstr "« Transformez le chaos en clarté, une tâche à la fois. »"
+
+#: templates/settings.html:5
+msgid "App Settings"
+msgstr "Paramètres de l'application"
+
+#: templates/settings.html:12
+msgid "Theme"
+msgstr "Thème"
+
+#: templates/settings.html:14
+msgid "Light"
+msgstr "Clair"
+
+#: templates/settings.html:15
+msgid "Dark"
+msgstr "Sombre"
+
+#: templates/settings.html:21
+msgid "Font Size"
+msgstr "Taille de la police"
+
+#: templates/settings.html:23
+msgid "Small"
+msgstr "Petite"
+
+#: templates/settings.html:24
+msgid "Medium"
+msgstr "Moyenne"
+
+#: templates/settings.html:25
+msgid "Large"
+msgstr "Grande"
+
+#: templates/settings.html:31
+msgid "Language"
+msgstr "Langue"
+
+#: templates/settings.html:33
+msgid "English"
+msgstr "Anglais"
+
+#: templates/settings.html:34
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: templates/settings.html:35
+msgid "French"
+msgstr "Français"
+
+#: templates/settings.html:41
+msgid "Default Start Page"
+msgstr "Page de démarrage par défaut"
+
+#: templates/settings.html:43
+msgid "Today’s Tasks"
+msgstr "Tâches d'aujourd'hui"
+
+#: templates/settings.html:51
+msgid "Theme Accent Color"
+msgstr "Couleur d'accent du thème"
+
+#: templates/settings.html:53
+msgid "Blue"
+msgstr "Bleu"
+
+#: templates/settings.html:54
+msgid "Green"
+msgstr "Vert"
+
+#: templates/settings.html:55
+msgid "Red"
+msgstr "Rouge"
+
+#: templates/settings.html:56
+msgid "Purple"
+msgstr "Violet"
+
+#: templates/settings.html:62
+msgid "Default Due Date"
+msgstr "Date d'échéance par défaut"
+
+#: templates/settings.html:64
+msgid "None"
+msgstr "Aucune"
+
+#: templates/settings.html:71
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+#: templates/signin.html:84 templates/signup.html:84
+msgid "Close"
+msgstr "Fermer"
+
+#: templates/signin.html:92 templates/signup.html:92
+msgid "Taskify Logo"
+msgstr "Logo Taskify"
+
+#: templates/signin.html:93
+msgid "Welcome Back 👋"
+msgstr "Content de vous revoir 👋"
+
+#: templates/signin.html:94
+msgid "Sign in to continue managing your tasks"
+msgstr "Connectez-vous pour continuer à gérer vos tâches"
+
+#: templates/signin.html:100 templates/signup.html:104
+msgid "name@example.com"
+msgstr "nom@exemple.com"
+
+#: templates/signin.html:101 templates/signup.html:105
+msgid "Email address"
+msgstr "Adresse e-mail"
+
+#: templates/signin.html:105 templates/signin.html:106
+#: templates/signup.html:109 templates/signup.html:110
+msgid "Password"
+msgstr "Mot de passe"
+
+#: templates/signin.html:110
+msgid "Sign in"
+msgstr "Se connecter"
+
+#: templates/signin.html:114
+msgid "Create account"
+msgstr "Créer un compte"
+
+#: templates/signup.html:93
+msgid "Welcome 👋"
+msgstr "Bienvenue 👋"
+
+#: templates/signup.html:94
+msgid "Sign up to start managing your tasks"
+msgstr "Inscrivez-vous pour commencer à gérer vos tâches"
+
+#: templates/signup.html:99
+msgid "Your name"
+msgstr "Votre nom"
+
+#: templates/signup.html:100
+msgid "Name"
+msgstr "Nom"
+
+#: templates/signup.html:114
+msgid "Sign up"
+msgstr "S'inscrire"
+
+#: templates/today.html:5
+msgid "Today's Tasks"
+msgstr "Tâches d'aujourd'hui"
+
+#: templates/update_task.html:4 templates/update_task.html:41
+msgid "Update Task"
+msgstr "Mettre à jour la tâche"
+
+#: templates/update_task.html:10
+msgid "Title"
+msgstr "Titre"
+
+#: templates/update_task.html:32
+msgid "Details"
+msgstr "Détails"
+
+#: templates/profile.html:4
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/profile.html:10
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: templates/profile.html:16
+msgid "Location / Timezone"
+msgstr "Localisation / Fuseau horaire"
+
+#: templates/profile.html:22
+msgid "Bio"
+msgstr "Bio"
+
+#: templates/profile.html:28
+msgid "Passionate about productivity, coding, and fitness."
+msgstr "Passionné par la productivité, le codage et le fitness."
+
+#: templates/profile.html:34
+msgid "GitHub"
+msgstr "GitHub"
+
+#: templates/profile.html:40
+msgid "App Settings"
+msgstr "Paramètres de l'application"
+
+#: templates/profile.html:41
+msgid "Edit Profile"
+msgstr "Modifier le profil"

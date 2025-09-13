@@ -7,10 +7,18 @@ from flask_gravatar import Gravatar
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime,timedelta
 from collections import defaultdict
+from flask_babel import Babel, _
 
 # Initialize the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
+
+def get_locale():
+    if current_user.is_authenticated and current_user.settings:
+        return current_user.settings.language
+    return 'en'
+
+babel = Babel(app, locale_selector=get_locale)
 
 # Initialize Flask-Gravatar for user avatars
 gravatar = Gravatar(app,
@@ -90,7 +98,7 @@ def signup():
         # Check if the email is already registered
         existing_user = db.session.execute(db.select(User).where(User.email == email)).scalar_one_or_none()
         if existing_user:
-            flash("Email already registered. Please sign in.", "warning")
+            flash(_("Email already registered. Please sign in.", "warning"))
             return redirect(url_for("signin"))
 
         # Hash the password for security
@@ -100,7 +108,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
 
-        flash('Account created successfully', 'success')
+        flash(_('Account created successfully', 'success'))
         login_user(new_user)
         return redirect(url_for('add_task'))
     return render_template('signup.html', current_user=current_user)
@@ -124,10 +132,10 @@ def signin():
                         return redirect(url_for("completed"))
                 return redirect(url_for('dashboard'))
             else:
-                flash('Invalid password, Please try again.', 'danger')
+                flash(_('Invalid password, Please try again.', 'danger'))
                 return redirect(url_for('signin'))
         else:
-            flash('Email not found. Please sign up first.', 'warning')
+            flash(_('Email not found. Please sign up first.', 'warning'))
             return redirect(url_for('signup'))
     return render_template('signin.html', current_user=current_user)
 

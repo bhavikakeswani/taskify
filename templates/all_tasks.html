@@ -2,20 +2,20 @@
 {% block content %}
 
 <div class="d-flex justify-content-between align-items-center mb-4 border-bottom">
-  <h2>All Tasks</h2>
+  <h2>{{ _('All Tasks') }}</h2>
   <a href="{{ url_for('add_task') }}" class="btn add-task">
-    <i data-feather="plus"></i> Add Task
+    <i data-feather="plus"></i> {{ _('Add Task') }}
   </a>
 </div>
 
 <!-- Today -->
 {% if grouped.today %}
 <div class="card shadow-sm mb-4">
-  <div class="card-header fw-bold">Today</div>
+  <div class="card-header fw-bold">{{ _('Today') }}</div>
   <div class="card-body">
     {% for category, tasks in grouped.today.items() %}
     <div class="card mb-3 border-0 shadow-sm">
-      <div class="card-header bg-light fw-semibold">{{ category }}</div>
+      <div class="card-header bg-light fw-semibold">{{ _(category) }}</div>
       <ul class="list-group list-group-flush">
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
@@ -28,7 +28,7 @@
                       onchange="this.form.submit()">
                 <span class="task-text">{{ task.title }}</span>
               </label>
-              <div class="text-muted small">Due: {{ task.due_date }}</div>
+              <div class="text-muted small">{{ _('Due:') }} {{ task.due_date }}</div>
             </form>
           </div>
           <div class="d-flex align-items-center gap-2">
@@ -56,11 +56,11 @@
 <!-- Tomorrow -->
 {% if grouped.tomorrow %}
 <div class="card shadow-sm mb-4">
-  <div class="card-header fw-bold">Tomorrow</div>
+  <div class="card-header fw-bold">{{ _('Tomorrow') }}</div>
   <div class="card-body">
     {% for category, tasks in grouped.tomorrow.items() %}
     <div class="card mb-3 border-0 shadow-sm">
-      <div class="card-header bg-light fw-semibold">{{ category }}</div>
+      <div class="card-header bg-light fw-semibold">{{ _(category) }}</div>
       <ul class="list-group list-group-flush">
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
@@ -73,7 +73,7 @@
                       onchange="this.form.submit()">
                 <span class="task-text">{{ task.title }}</span>
               </label>
-              <div class="text-muted small">Due: {{ task.due_date }}</div>
+              <div class="text-muted small">{{ _('Due:') }} {{ task.due_date }}</div>
             </form>
           </div>
           <div class="d-flex align-items-center gap-2">
@@ -101,11 +101,11 @@
 <!-- Upcoming -->
 {% if grouped.upcoming %}
 <div class="card shadow-sm mb-4">
-  <div class="card-header fw-bold">Upcoming</div>
+  <div class="card-header fw-bold">{{ _('Upcoming') }}</div>
   <div class="card-body">
     {% for category, tasks in grouped.upcoming.items() %}
     <div class="card mb-3 border-0 shadow-sm">
-      <div class="card-header bg-light fw-semibold">{{ category }}</div>
+      <div class="card-header bg-light fw-semibold">{{ _(category) }}</div>
       <ul class="list-group list-group-flush">
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
@@ -118,7 +118,7 @@
                       onchange="this.form.submit()">
                 <span class="task-text">{{ task.title }}</span>
               </label>
-              <div class="text-muted small">Due: {{ task.due_date }}</div>
+              <div class="text-muted small">{{ _('Due:') }} {{ task.due_date }}</div>
             </form>
           </div>
           <div class="d-flex align-items-center gap-2">

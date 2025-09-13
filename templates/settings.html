@@ -2,72 +2,72 @@
 
 {% block content %}
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center border-bottom pb-2 mb-2">
-  <h2 class="mb-2">App Settings</h2>
+  <h2 class="mb-2">{{ _('App Settings') }}</h2>
 </div>
 
 <form method="POST" action="{{ url_for('settings') }}">
 
   <!-- Theme -->
   <div class="mb-3">
-    <label class="form-label fw-semibold">Theme</label>
+    <label class="form-label fw-semibold">{{ _('Theme') }}</label>
     <select class="form-select" name="theme">
-      <option value="light" {% if settings.theme == "light" %}selected{% endif %}>Light</option>
-      <option value="dark" {% if settings.theme == "dark" %}selected{% endif %}>Dark</option>
+      <option value="light" {% if settings.theme == "light" %}selected{% endif %}>{{ _('Light') }}</option>
+      <option value="dark" {% if settings.theme == "dark" %}selected{% endif %}>{{ _('Dark') }}</option>
     </select>
   </div>
 
   <!-- Font Size -->
   <div class="mb-3">
-    <label class="form-label fw-semibold">Font Size</label>
+    <label class="form-label fw-semibold">{{ _('Font Size') }}</label>
     <select class="form-select" name="font_size">
-      <option value="small" {% if settings.font_size == "small" %}selected{% endif %}>Small</option>
-      <option value="medium" {% if settings.font_size == "medium" %}selected{% endif %}>Medium</option>
-      <option value="large" {% if settings.font_size == "large" %}selected{% endif %}>Large</option>
+      <option value="small" {% if settings.font_size == "small" %}selected{% endif %}>{{ _('Small') }}</option>
+      <option value="medium" {% if settings.font_size == "medium" %}selected{% endif %}>{{ _('Medium') }}</option>
+      <option value="large" {% if settings.font_size == "large" %}selected{% endif %}>{{ _('Large') }}</option>
     </select>
   </div>
 
   <!-- Language -->
   <div class="mb-3">
-    <label class="form-label fw-semibold">Language</label>
+    <label class="form-label fw-semibold">{{ _('Language') }}</label>
     <select class="form-select" name="language">
-      <option value="en" {% if settings.language == "en" %}selected{% endif %}>English</option>
-      <option value="es" {% if settings.language == "es" %}selected{% endif %}>Spanish</option>
-      <option value="fr" {% if settings.language == "fr" %}selected{% endif %}>French</option>
+      <option value="en" {% if settings.language == "en" %}selected{% endif %}>{{ _('English') }}</option>
+      <option value="es" {% if settings.language == "es" %}selected{% endif %}>{{ _('Spanish') }}</option>
+      <option value="fr" {% if settings.language == "fr" %}selected{% endif %}>{{ _('French') }}</option>
     </select>
   </div>
 
   <!-- Start Page -->
   <div class="mb-3">
-    <label class="form-label fw-semibold">Default Start Page</label>
+    <label class="form-label fw-semibold">{{ _('Default Start Page') }}</label>
     <select class="form-select" name="start_page">
-      <option value="today" {% if settings.start_page == "today" %}selected{% endif %}>Today’s Tasks</option>
-      <option value="all" {% if settings.start_page == "all" %}selected{% endif %}>All Tasks</option>
-      <option value="completed" {% if settings.start_page == "completed" %}selected{% endif %}>Completed Tasks</option>
+      <option value="today" {% if settings.start_page == "today" %}selected{% endif %}>{{ _('Today’s Tasks') }}</option>
+      <option value="all" {% if settings.start_page == "all" %}selected{% endif %}>{{ _('All Tasks') }}</option>
+      <option value="completed" {% if settings.start_page == "completed" %}selected{% endif %}>{{ _('Completed Tasks') }}</option>
     </select>
   </div>
 
-<!-- Theme Accent Color -->
-<div class="mb-3">
-  <label class="form-label fw-semibold">Theme Accent Color</label>
-  <select class="form-select" name="accent_color">
-    <option value="blue" {% if settings.accent_color == "primary" %}selected{% endif %}>Blue</option>
-    <option value="green" {% if settings.accent_color == "green" %}selected{% endif %}>Green</option>
-    <option value="red" {% if settings.accent_color == "red" %}selected{% endif %}>Red</option>
-    <option value="purple" {% if settings.accent_color == "purple" %}selected{% endif %}>Purple</option>
-  </select>
-</div>
+  <!-- Theme Accent Color -->
+  <div class="mb-3">
+    <label class="form-label fw-semibold">{{ _('Theme Accent Color') }}</label>
+    <select class="form-select" name="accent_color">
+      <option value="blue" {% if settings.accent_color == "primary" %}selected{% endif %}>{{ _('Blue') }}</option>
+      <option value="green" {% if settings.accent_color == "green" %}selected{% endif %}>{{ _('Green') }}</option>
+      <option value="red" {% if settings.accent_color == "red" %}selected{% endif %}>{{ _('Red') }}</option>
+      <option value="purple" {% if settings.accent_color == "purple" %}selected{% endif %}>{{ _('Purple') }}</option>
+    </select>
+  </div>
 
   <!-- Default Due Date -->
   <div class="mb-3">
-    <label class="form-label fw-semibold">Default Due Date</label>
+    <label class="form-label fw-semibold">{{ _('Default Due Date') }}</label>
     <select class="form-select" name="default_due_date">
-      <option value="none" {% if settings.default_due_date == "none" %}selected{% endif %}>None</option>
-      <option value="today" {% if settings.default_due_date == "today" %}selected{% endif %}>Today</option>
-      <option value="tomorrow" {% if settings.default_due_date == "tomorrow" %}selected{% endif %}>Tomorrow</option>
+      <option value="none" {% if settings.default_due_date == "none" %}selected{% endif %}>{{ _('None') }}</option>
+      <option value="today" {% if settings.default_due_date == "today" %}selected{% endif %}>{{ _('Today') }}</option>
+      <option value="tomorrow" {% if settings.default_due_date == "tomorrow" %}selected{% endif %}>{{ _('Tomorrow') }}</option>
     </select>
   </div>
 
   <!-- Save Button -->
-  <button type="submit" class="btn btn-primary mt-2">Save Settings</button>
+  <button type="submit" class="btn btn-primary mt-2">{{ _('Save Settings') }}</button>
 </form>
 {% endblock %}

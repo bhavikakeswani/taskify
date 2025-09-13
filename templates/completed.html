@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4 border-bottom">
-  <h2>Completed Tasks</h2>
+  <h2>{{ _('Completed Tasks') }}</h2>
   <select class="form-select w-auto" onchange="location = this.value;">
-    <option value="{{ url_for('completed', filter='today') }}" {% if filter_by == 'today' %}selected{% endif %}>Today</option>
-    <option value="{{ url_for('completed', filter='this_week') }}" {% if filter_by == 'this_week' %}selected{% endif %}>This Week</option>
-    <option value="{{ url_for('completed', filter='this_month') }}" {% if filter_by == 'this_month' %}selected{% endif %}>This Month</option>
+    <option value="{{ url_for('completed', filter='today') }}" {% if filter_by == 'today' %}selected{% endif %}>{{ _('Today') }}</option>
+    <option value="{{ url_for('completed', filter='this_week') }}" {% if filter_by == 'this_week' %}selected{% endif %}>{{ _('This Week') }}</option>
+    <option value="{{ url_for('completed', filter='this_month') }}" {% if filter_by == 'this_month' %}selected{% endif %}>{{ _('This Month') }}</option>
   </select>
 </div>
 
@@ -13,24 +13,24 @@
   <div class="col-sm-4">
     <div class="card shadow-sm border-0">
       <div class="card-body">
-        <h6 class="text-muted text-uppercase small mb-1">Completed Today</h6>
-        <h4 class="mb-0 fw-bold">{{completed_today}}</h4>
+        <h6 class="text-muted text-uppercase small mb-1">{{ _('Completed Today') }}</h6>
+        <h4 class="mb-0 fw-bold">{{ completed_today }}</h4>
       </div>
     </div>
   </div>
   <div class="col-sm-4">
     <div class="card shadow-sm border-0">
       <div class="card-body">
-        <h6 class="text-muted text-uppercase small mb-1">This Week</h6>
-        <h4 class="mb-0 fw-bold">{{completed_this_week}}</h4>
+        <h6 class="text-muted text-uppercase small mb-1">{{ _('This Week') }}</h6>
+        <h4 class="mb-0 fw-bold">{{ completed_this_week }}</h4>
       </div>
     </div>
   </div>
   <div class="col-sm-4">
     <div class="card shadow-sm border-0">
       <div class="card-body">
-        <h6 class="text-muted text-uppercase small mb-1">This Month</h6>
-        <h4 class="mb-0 fw-bold">{{completed_this_month}}</h4>
+        <h6 class="text-muted text-uppercase small mb-1">{{ _('This Month') }}</h6>
+        <h4 class="mb-0 fw-bold">{{ completed_this_month }}</h4>
       </div>
     </div>
   </div>
@@ -41,24 +41,24 @@
   <table class="table align-middle shadow-sm border">
     <thead class="table-light">
       <tr>
-        <th scope="col">Task</th>
-        <th scope="col">Category</th>
-        <th scope="col">Completed</th>
-        <th scope="col" class="text-end">Actions</th>
+        <th scope="col">{{ _('Task') }}</th>
+        <th scope="col">{{ _('Category') }}</th>
+        <th scope="col">{{ _('Completed') }}</th>
+        <th scope="col" class="text-end">{{ _('Actions') }}</th>
       </tr>
     </thead>
     <tbody>
-      {% for task in tasks%}
+      {% for task in tasks %}
       <tr>
-        <td><i data-feather="check-circle" class="text-success me-2"></i>{{task.title}}</td>
-        <td><span class="badge category-{{task.category|lower}}">{{task.category}}</span></td>
+        <td><i data-feather="check-circle" class="text-success me-2"></i>{{ task.title }}</td>
+        <td><span class="badge category-{{ task.category|lower }}">{{ _(task.category) }}</span></td>
         <td class="text-muted">
           {% set dt_parts = task.completed_at.split(' ') %}
           {% set task_date = dt_parts[0] ~ ' ' ~ dt_parts[1] ~ ' ' ~ dt_parts[2] %}
           {% if task_date == yesterday %}
-            Yesterday · {{ dt_parts[3] }}
+            {{ _('Yesterday') }} · {{ dt_parts[3] }}
           {% elif task_date == today %}
-            Today · {{ dt_parts[3] }}
+            {{ _('Today') }} · {{ dt_parts[3] }}
           {% else %}
             {{ task_date }} · {{ dt_parts[3] }}
           {% endif %}

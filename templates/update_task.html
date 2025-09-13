@@ -1,44 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-1 mb-2 border-bottom">
-  <h2 class="mb-2">Update Task</h2>
+  <h2 class="mb-2">{{ _('Update Task') }}</h2>
 </div>
 
 <form method="POST" action="{{ url_for('update_task', task_id=task.id) }}">
 
     <div class="mb-3">
-      <label class="form-label">Title</label>
+      <label class="form-label">{{ _('Title') }}</label>
       <input type="text" class="form-control" name="title" value="{{ task.title }}" required>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Due Date</label>
-      <input type="date" class="form-control" name="due_date" value="{{ formatted_due_date}}">
+      <label class="form-label">{{ _('Due Date') }}</label>
+      <input type="date" class="form-control" name="due_date" value="{{ formatted_due_date }}">
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Category</label>
+      <label class="form-label">{{ _('Category') }}</label>
       <select class="form-select" name="category">
-        <option value="personal" {% if task.category=="personal" %}selected{% endif %}>Personal</option>
-        <option value="work" {% if task.category=="work" %}selected{% endif %}>Work</option>
-        <option value="study" {% if task.category=="study" %}selected{% endif %}>Study</option>
-        <option value="fitness" {% if task.category=="fitness" %}selected{% endif %}>Fitness</option>
-        <option value="travel" {% if task.category=="travel" %}selected{% endif %}>Travel</option>
-        <option value="others" {% if task.category=="others" %}selected{% endif %}>Others</option>
+        <option value="personal" {% if task.category=="personal" %}selected{% endif %}>{{ _('Personal') }}</option>
+        <option value="work" {% if task.category=="work" %}selected{% endif %}>{{ _('Work') }}</option>
+        <option value="study" {% if task.category=="study" %}selected{% endif %}>{{ _('Study') }}</option>
+        <option value="fitness" {% if task.category=="fitness" %}selected{% endif %}>{{ _('Fitness') }}</option>
+        <option value="travel" {% if task.category=="travel" %}selected{% endif %}>{{ _('Travel') }}</option>
+        <option value="others" {% if task.category=="others" %}selected{% endif %}>{{ _('Others') }}</option>
       </select>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Details</label>
+      <label class="form-label">{{ _('Details') }}</label>
       <textarea class="form-control" name="details" rows="3">{{ task.description }}</textarea>
     </div>
 
     <div class="form-check mb-3">
       <input class="form-check-input" type="checkbox" name="completed" value="yes" {% if task.completed %}checked{% endif %}>
-      <label class="form-check-label">Mark as Completed</label>
+      <label class="form-check-label">{{ _('Mark as Completed') }}</label>
     </div>
 
-    <button type="submit" class="btn btn-primary me-3 mt-2">Update Task</button>
-    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-2">Cancel</a>
+    <button type="submit" class="btn btn-primary me-3 mt-2">{{ _('Update Task') }}</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-2">{{ _('Cancel') }}</a>
 </form>
 {% endblock %}

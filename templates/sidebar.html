@@ -1,18 +1,43 @@
 <!-- Sidebar -->
-        <nav id="sidebarMenu" class="col-4 col-md-3 col-lg-2 bg-light sidebar">
-          <div class="position-sticky pt-3">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link {% if active_page == 'dashboard' %}active{% endif %}" aria-current="page" href="{{url_for('dashboard')}}">
-                  <span data-feather="home"></span>
-                  Dashboard
-                </a>
-              </li>
-              <li class="nav-item"><a class="nav-link {% if active_page == 'all_tasks' %}active{% endif %}" href="{{url_for('tasks')}}"><span data-feather="list"></span> All Tasks</a></li>
-              <li class="nav-item"><a class="nav-link {% if active_page == 'today' %}active{% endif %}" href="{{url_for('today')}}"><span data-feather="calendar"></span> Today</a></li>
-              <li class="nav-item"><a class="nav-link {% if active_page == 'completed' %}active{% endif %}" href="{{url_for('completed')}}"><span data-feather="check"></span> Completed</a></li>
-              <li class="nav-item"><a class="nav-link {% if active_page == 'add_task' %}active{% endif %}" href="{{url_for('add_task')}}"><span data-feather="plus"></span> Add Task</a></li>
-              <li class="nav-item"><a class="nav-link {% if active_page == 'settings' %}active{% endif %}"  href="{{url_for('settings')}}"><span data-feather="settings"></span> Settings</a></li>
-            </ul>
-          </div>
-        </nav>
+<nav id="sidebarMenu" class="col-4 col-md-3 col-lg-2 bg-light sidebar">
+  <div class="position-sticky pt-3">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'dashboard' %}active{% endif %}" aria-current="page" href="{{ url_for('dashboard') }}">
+          <span data-feather="home"></span>
+          {{ _('Dashboard') }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'all_tasks' %}active{% endif %}" href="{{ url_for('tasks') }}">
+          <span data-feather="list"></span>
+          {{ _('All Tasks') }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'today' %}active{% endif %}" href="{{ url_for('today') }}">
+          <span data-feather="calendar"></span>
+          {{ _('Today') }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'completed' %}active{% endif %}" href="{{ url_for('completed') }}">
+          <span data-feather="check"></span>
+          {{ _('Completed') }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'add_task' %}active{% endif %}" href="{{ url_for('add_task') }}">
+          <span data-feather="plus"></span>
+          {{ _('Add Task') }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'settings' %}active{% endif %}" href="{{ url_for('settings') }}">
+          <span data-feather="settings"></span>
+          {{ _('Settings') }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
