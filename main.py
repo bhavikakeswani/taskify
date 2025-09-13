@@ -9,7 +9,6 @@ from datetime import datetime,timedelta
 from collections import defaultdict
 from flask_babel import Babel, _
 
-# Initialize the Flask application
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
 
@@ -20,7 +19,6 @@ def get_locale():
 
 babel = Babel(app, locale_selector=get_locale)
 
-# Initialize Flask-Gravatar for user avatars
 gravatar = Gravatar(app,
                     size=100,
                     rating='g',
@@ -30,27 +28,32 @@ gravatar = Gravatar(app,
                     use_ssl=False,
                     base_url=None)
 
-# Define the database base class and SQLAlchemy instance
+@app.context_processor
+def inject_gravatar():
+    return dict(gravatar=gravatar)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
 db = SQLAlchemy(app)
 
-# Initialize Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# Define the User model for the database
 class User(db.Model, UserMixin):
     __tablename__ = "users"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     password: Mapped[str] = mapped_column(String(250), nullable=False)
+    location: Mapped[str] = mapped_column(String(100), default="")   
+    bio: Mapped[str] = mapped_column(String(250), default="")      
+    github: Mapped[str] = mapped_column(String(250), default="")   
+    created_at: Mapped[str] = mapped_column(String(50), default=datetime.now().strftime("%d %b %Y")) 
     theme: Mapped[str] = mapped_column(String(50), default="Light")
     font_size: Mapped[str] = mapped_column(String(50), default="Medium")
     language: Mapped[str] = mapped_column(String(50), default="English")
+    created_at: Mapped[str] = mapped_column(String(50), default=datetime.now().strftime("%d %b %Y"))
     tasks = relationship("Task", back_populates="user", cascade="all, delete-orphan")
 
-# Define the Task model for the database
 class Task(db.Model):
     __tablename__ = "tasks"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -64,7 +67,6 @@ class Task(db.Model):
     completed: Mapped[bool] = mapped_column(Boolean, default=False)
     user = relationship('User', back_populates='tasks')
 
-# Define the UserSettings model for the database
 class UserSettings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, unique=True)
@@ -95,13 +97,11 @@ def signup():
         email = request.form.get('email')
         password = request.form.get('password')
 
-        # Check if the email is already registered
         existing_user = db.session.execute(db.select(User).where(User.email == email)).scalar_one_or_none()
         if existing_user:
             flash(_("Email already registered. Please sign in.", "warning"))
             return redirect(url_for("signin"))
 
-        # Hash the password for security
         hashed_password = generate_password_hash(password, method='sha256', salt_length=8)
         new_user = User(name=name, email=email, password=hashed_password)
 
@@ -411,7 +411,6 @@ def settings():
     settings = UserSettings.query.filter_by(user_id=current_user.id).first()
 
     if not settings:
-        # Create default settings if not exists
         settings = UserSettings(user_id=current_user.id)
         db.session.add(settings)
         db.session.commit()
@@ -442,9 +441,17 @@ def inject_user_settings():
         return dict(settings=settings)
     return dict(settings=None)
 
-@app.route("/profile")
+@app.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
+    if request.method == "POST":
+        current_user.name = request.form.get("name")
+        current_user.location = request.form.get("location")
+        current_user.bio = request.form.get("bio")
+        current_user.github = request.form.get("github")
+        db.session.commit()
+        return redirect(url_for("profile"))
+
     return render_template("profile.html", current_user=current_user)
 
 @app.route('/logout')
@@ -453,7 +460,6 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-# Main entry point for the application
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

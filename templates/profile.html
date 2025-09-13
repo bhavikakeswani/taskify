@@ -5,42 +5,38 @@
   <h2 class="mb-3">{{_('Profile')}}</h2>
 </div>
 
+<form method="POST">
 <div class="card p-4 shadow-sm">
   <div class="d-flex align-items-center mb-4">
-    <!-- Gravatar -->
-    <img src="https://www.gravatar.com/avatar/?d=mp&s=120" alt="User Avatar" class="rounded-circle me-4" width="120" height="120">
+    <img src="{{ gravatar(current_user.email, size=120, default='retro') }}" alt="{{ current_user.name }}" class="rounded-circle me-4" width="120" height="120">
     <div>
-      <h4 class="mb-1">John Doe</h4>
-      <p class="text-muted mb-1">johndoe@example.com</p>
-      <small class="text-muted">{{_('Joined: August 2025')}}</small>
+      <h4 class="mb-1">
+        <input type="text" name="name" class="form-control" value="{{ current_user.name }}">
+      </h4>
+      <p class="text-muted mb-1">{{ current_user.email }}</p>
+      <small class="text-muted">{{ _('Joined: ') }}{{ current_user.created_at }}</small>
     </div>
-  </div>
-
-  <!-- Profile Details -->
-  <div class="mb-3">
-    <label class="form-label fw-semibold">{{_('Username')}}</label>
-    <input type="text" class="form-control" value="johndoe" readonly>
   </div>
 
   <div class="mb-3">
     <label class="form-label fw-semibold">{{_('Location / Timezone')}}</label>
-    <input type="text" class="form-control" value="New York, EST" readonly>
+    <input type="text" name="location" class="form-control" value="{{ current_user.location }}">
   </div>
 
   <div class="mb-3">
     <label class="form-label fw-semibold">{{_('Bio')}}</label>
-    <textarea class="form-control" rows="3" readonly>{{_('Passionate about productivity, coding, and fitness.')}}</textarea>
+    <textarea class="form-control" name="bio" rows="3">{{ current_user.bio }}</textarea>
   </div>
 
   <div class="mb-3">
     <label class="form-label fw-semibold">{{_('GitHub')}}</label>
-    <input type="text" class="form-control" value="https://github.com/johndoe" readonly>
+    <input type="text" name="github" class="form-control" value="{{ current_user.github }}">
   </div>
 
-  <!-- Quick Actions -->
   <div class="d-flex gap-2">
     <a href="{{ url_for('settings') }}" class="btn btn-outline-secondary">{{_('App Settings')}}</a>
-    <button class="btn btn-primary">{{_('Edit Profile')}}</button>
+    <button type="submit" class="btn btn-primary">{{_('Save Profile')}}</button>
   </div>
 </div>
+</form>
 {% endblock %}

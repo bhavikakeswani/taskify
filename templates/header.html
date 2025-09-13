@@ -23,7 +23,9 @@
           <div class="dropdown">
             <button class="btn btn-link p-0 border-0 dropdown-toggle" 
                     type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://via.placeholder.com/36" class="rounded-circle" width="36" height="36">
+              <img src="{{ gravatar(current_user.email, size=36, default='retro') }}" 
+              class="rounded-circle" width="36" height="36" alt="{{ current_user.name }}">
+
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
               <li><a class="dropdown-item" href="{{ url_for('profile') }}">{{ _('Profile') }}</a></li>
