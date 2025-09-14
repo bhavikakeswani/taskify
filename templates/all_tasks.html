@@ -19,7 +19,7 @@
       <ul class="list-group list-group-flush">
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-start">
+          <div class="d-flex align-items-center">
             <form action="{{ url_for('toggle_task_status', task_id=task.id) }}" method="post">
               <label class="task-label">
                 <input type="checkbox" 
@@ -64,7 +64,7 @@
       <ul class="list-group list-group-flush">
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-start">
+          <div class="d-flex align-items-center">
             <form action="{{ url_for('toggle_task_status', task_id=task.id) }}" method="post">
               <label class="task-label">
                 <input type="checkbox" 
@@ -110,6 +110,51 @@
         {% for task in tasks %}
         <li class="list-group-item d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-start">
+            <form action="{{ url_for('toggle_task_status', task_id=task.id) }}" method="post">
+              <label class="task-label">
+                <input type="checkbox" 
+                      class="task-checkbox me-2" 
+                      {% if task.completed == 1 %}checked{% endif %}
+                      onchange="this.form.submit()">
+                <span class="task-text">{{ task.title }}</span>
+              </label>
+              <div class="text-muted small">{{ _('Due:') }} {{ task.due_date }}</div>
+            </form>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <a href="{{ url_for('update_task', task_id=task.id) }}" class="update-icon">
+              <i data-feather="edit-2"></i>
+            </a>
+            <a href="{{ url_for('delete_task', task_id=task.id) }}" class="delete-icon">
+              <i data-feather="trash-2"></i>
+            </a>
+            {% if task.completed == 1 %}
+              <span class="status-dot completed"></span>
+            {% else %}
+              <span class="status-dot pending"></span>
+            {% endif %}
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<!-- Overdue -->
+{% if grouped.overdue %}
+<div class="card shadow-sm mb-4">
+  <div class="card-header fw-bold text-danger">{{ _('Overdue') }}</div>
+  <div class="card-body">
+    {% for category, tasks in grouped.overdue.items() %}
+    <div class="card mb-3 border-0 shadow-sm">
+      <div class="card-header bg-light fw-semibold">{{ _(category) }}</div>
+      <ul class="list-group list-group-flush">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
             <form action="{{ url_for('toggle_task_status', task_id=task.id) }}" method="post">
               <label class="task-label">
                 <input type="checkbox" 

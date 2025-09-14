@@ -214,6 +214,7 @@ def tasks():
         "today": defaultdict(list),
         "tomorrow": defaultdict(list),
         "upcoming": defaultdict(list),
+        "overdue": defaultdict(list)
     }
 
     for task in user_tasks:
@@ -227,6 +228,8 @@ def tasks():
                 grouped["today"][task.category].append(task)
             elif due_dt == tomorrow:
                 grouped["tomorrow"][task.category].append(task)
+            elif due_dt < today and not task.completed:
+                grouped["overdue"][task.category].append(task)
             else:
                 grouped["upcoming"][task.category].append(task)
         else:
