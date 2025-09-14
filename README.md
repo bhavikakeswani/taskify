@@ -9,19 +9,17 @@ It helps you stay organized with features like task creation, editing, completio
 - 🔔 Track completed vs uncompleted tasks  
 - ⚙️ User settings for task sorting and preferences  
 - 👤 User authentication (sign up / login / profile)  
-- 🎨 Clean Bootstrap 5 UI with light & dark theme support  
 
 ## Tech Stack
-- **Backend**: [Flask](https://flask.palletsprojects.com/)  
-- **Frontend**: HTML, Jinja2 templates, [Bootstrap 5](https://getbootstrap.com/)  
+- **Backend**: Flask
+- **Frontend**: HTML, Jinja2 templates, CSS
 - **Database**: SQLite  
-- **Authentication**: Flask-Login  
-- **Other Tools**: SQLAlchemy ORM  
+- **Authentication**: Flask-Login 
 
 ## Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/taskify.git
+git clone https://github.com/bhavikakeswani/taskify.git
 cd taskify
   ```
 2. Create and activate a virtual environment:
