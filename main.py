@@ -457,6 +457,11 @@ def profile():
 
     return render_template("profile.html", current_user=current_user)
 
+@app.route('/about')
+@login_required
+def about():
+    return render_template('about.html')
+
 @app.route('/logout')
 @login_required
 def logout():
