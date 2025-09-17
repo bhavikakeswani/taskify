@@ -14,6 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: templates/add_task.html:4
@@ -416,3 +417,44 @@ msgstr "Configuración de la app"
 #: templates/profile.html:41
 msgid "Edit Profile"
 msgstr "Editar perfil"
+
+msgid "About Taskify"
+msgstr "Acerca de Taskify"
+
+msgid "What is Taskify?"
+msgstr "¿Qué es Taskify?"
+
+msgid "Features"
+msgstr "Características"
+
+msgid "Create, edit, and delete tasks easily"
+msgstr "Crear, editar y eliminar tareas fácilmente"
+
+msgid "Mark tasks as complete or overdue"
+msgstr "Marcar tareas como completadas o vencidas"
+
+msgid "Organized task lists for better productivity"
+msgstr "Listas de tareas organizadas para una mejor productividad"
+
+msgid "User authentication to keep your tasks safe"
+msgstr "Autenticación de usuario para mantener tus tareas seguras"
+
+msgid "Personalized dashboard to quickly view tasks, overdue items, and progress"
+msgstr "Tablero personalizado para ver rápidamente tareas, vencidas y progreso"
+
+msgid "Why Taskify?"
+msgstr "¿Por qué Taskify?"
+
+msgid "Who is Taskify for?"
+msgstr "¿Para quién es Taskify?"
+
+msgid "Credits"
+msgstr "Créditos"
+
+#: templates/about.html:5
+msgid "Taskify is a simple and powerful task management web app designed to help you organize, prioritize, and complete your daily tasks with ease. Whether you’re working on personal goals, school projects, or professional work, Taskify keeps everything in one place."
+msgstr "Taskify es una aplicación web de gestión de tareas simple y poderosa, diseñada para ayudarte a organizar, priorizar y completar tus tareas diarias con facilidad. Ya sea que trabajes en metas personales, proyectos escolares o trabajo profesional, Taskify mantiene todo en un solo lugar."
+
+#: templates/about.html:10
+msgid "We built Taskify with simplicity and efficiency in mind. The goal is to provide a clean and intuitive interface that helps you focus on getting things done, without unnecessary clutter."
+msgstr "Creamos Taskify pensando en la simplicidad y la eficiencia. El objetivo es ofrecer una interfaz limpia e intuitiva que te ayude a concentrarte en hacer las cosas, sin distracciones innecesarias."

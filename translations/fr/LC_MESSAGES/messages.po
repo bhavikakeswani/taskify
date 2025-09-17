@@ -412,3 +412,44 @@ msgstr "Paramètres de l'application"
 #: templates/profile.html:41
 msgid "Edit Profile"
 msgstr "Modifier le profil"
+
+msgid "About Taskify"
+msgstr "À propos de Taskify"
+
+msgid "What is Taskify?"
+msgstr "Qu'est-ce que Taskify ?"
+
+#: templates/about.html:5
+msgid "Taskify is a simple and powerful task management web app designed to help you organize, prioritize, and complete your daily tasks with ease. Whether you’re working on personal goals, school projects, or professional work, Taskify keeps everything in one place."
+msgstr "Taskify est une application web de gestion de tâches simple et puissante, conçue pour vous aider à organiser, prioriser et accomplir vos tâches quotidiennes avec facilité. Que vous travailliez sur des objectifs personnels, des projets scolaires ou professionnels, Taskify garde tout au même endroit."
+
+msgid "Features"
+msgstr "Fonctionnalités"
+
+msgid "Create, edit, and delete tasks easily"
+msgstr "Créer, modifier et supprimer des tâches facilement"
+
+msgid "Mark tasks as complete or overdue"
+msgstr "Marquer les tâches comme terminées ou en retard"
+
+msgid "Organized task lists for better productivity"
+msgstr "Listes de tâches organisées pour une meilleure productivité"
+
+msgid "User authentication to keep your tasks safe"
+msgstr "Authentification des utilisateurs pour sécuriser vos tâches"
+
+msgid "Personalized dashboard to quickly view tasks, overdue items, and progress"
+msgstr "Tableau de bord personnalisé pour visualiser rapidement les tâches, les retards et la progression"
+
+msgid "Why Taskify?"
+msgstr "Pourquoi Taskify ?"
+
+#: templates/about.html:10
+msgid "We built Taskify with simplicity and efficiency in mind. The goal is to provide a clean and intuitive interface that helps you focus on getting things done, without unnecessary clutter."
+msgstr "Nous avons conçu Taskify en pensant à la simplicité et à l'efficacité. L'objectif est de fournir une interface claire et intuitive qui vous aide à vous concentrer sur vos tâches, sans distractions inutiles."
+
+msgid "Who is Taskify for?"
+msgstr "À qui s'adresse Taskify ?"
+
+msgid "Credits"
+msgstr "Crédits"
